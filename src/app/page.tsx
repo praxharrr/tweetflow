@@ -1,10 +1,10 @@
-import { MessageSquare, Clock, TrendingUp, Zap } from "lucide-react";
+import { MessageSquare, Clock, TrendingUp, Zap, CheckCircle2 } from "lucide-react";
 import StatCard from "@/components/dashboard/StatCard";
 import Panel from "@/components/dashboard/Panel";
 import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
-  const [totalTweets, scheduledCount, scheduledPosts] = await Promise.all([
+  const [totalTweets, scheduledCount, scheduledPosts, twitterAccount] = await Promise.all([
     prisma.post.count(),
     prisma.post.count({ where: { status: "scheduled" } }),
     prisma.post.findMany({
@@ -12,14 +12,13 @@ export default async function Home() {
       orderBy: { scheduledFor: "asc" },
       take: 5,
     }),
+    prisma.twitterAccount.findFirst(),
   ]);
 
   return (
     <div>
       <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
-      <p className="mt-1 text-sm text-neutral-500">
-        Welcome back to Tweetflow.
-      </p>
+      <p className="mt-1 text-sm text-neutral-500">Welcome back to Tweetflow.</p>
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Total Tweets" value={totalTweets} icon={MessageSquare} />
@@ -42,9 +41,7 @@ export default async function Home() {
                     key={post.id}
                     className="flex items-center justify-between rounded-lg border border-neutral-100 px-3 py-2"
                   >
-                    <p className="line-clamp-1 text-sm text-neutral-700">
-                      {post.content}
-                    </p>
+                    <p className="line-clamp-1 text-sm text-neutral-700">{post.content}</p>
                     <span className="shrink-0 text-xs text-neutral-400">
                       {post.scheduledFor
                         ? new Date(post.scheduledFor).toLocaleDateString("en-IN", {
@@ -60,9 +57,21 @@ export default async function Home() {
           </Panel>
         </div>
         <Panel title="Connected Accounts">
-          <button className="w-full rounded-lg border border-neutral-200 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-50">
-            Manage Accounts
-          </button>
+          {twitterAccount ? (
+            <div className="flex items-center gap-2 rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2">
+              <CheckCircle2 size={16} className="text-emerald-600" />
+              <span className="text-sm font-medium text-emerald-700">
+                @{twitterAccount.username}
+              </span>
+            </div>
+          ) : (
+            
+              href="/api/auth/twitter/connect"
+              className="block w-full rounded-lg border border-neutral-200 py-2 text-center text-sm font-medium text-neutral-600 hover:bg-neutral-50"
+            >
+              Connect X Account
+            </a>
+          )}
         </Panel>
       </div>
     </div>

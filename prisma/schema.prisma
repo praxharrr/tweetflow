@@ -21,3 +21,14 @@ model Post {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
+
+model TwitterAccount {
+  id           String   @id @default(cuid())
+  twitterId    String   @unique
+  username     String
+  accessToken  String
+  refreshToken String?
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
