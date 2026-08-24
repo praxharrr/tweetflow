@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Send, Save, Loader2 } from "lucide-react";
+import { Sparkles, Send, Save, Loader2, Check } from "lucide-react";
 
 const MAX_CHARS = 280;
 
@@ -9,6 +9,8 @@ export default function TweetComposer() {
   const [content, setContent] = useState("");
   const [topic, setTopic] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const charCount = content.length;
   const isOverLimit = charCount > MAX_CHARS;
@@ -28,6 +30,27 @@ export default function TweetComposer() {
       console.error(err);
     } finally {
       setIsGenerating(false);
+    }
+  }
+
+  async function handleSaveDraft() {
+    if (!content.trim()) return;
+    setIsSaving(true);
+    setSaved(false);
+    try {
+      const res = await fetch("/api/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, status: "draft" }),
+      });
+      if (res.ok) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSaving(false);
     }
   }
 
@@ -68,9 +91,19 @@ export default function TweetComposer() {
       />
 
       <div className="mt-4 flex items-center justify-end gap-2">
-        <button className="flex items-center gap-2 rounded-lg border border-neutral-200 px-3 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-50">
-          <Save size={16} />
-          Draft
+        <button
+          onClick={handleSaveDraft}
+          disabled={content.length === 0 || isSaving}
+          className="flex items-center gap-2 rounded-lg border border-neutral-200 px-3 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-50 disabled:opacity-40"
+        >
+          {isSaving ? (
+            <Loader2 size={16} className="animate-spin" />
+          ) : saved ? (
+            <Check size={16} className="text-emerald-600" />
+          ) : (
+            <Save size={16} />
+          )}
+          {saved ? "Saved" : "Draft"}
         </button>
         <button
           disabled={content.length === 0 || isOverLimit}
