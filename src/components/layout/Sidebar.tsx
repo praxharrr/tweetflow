@@ -23,6 +23,10 @@ const navGroups = [
       { label: "Best Posting Times", href: "/best-posting-times" },
     ],
   },
+  {
+    label: "Account",
+    items: [{ label: "Settings", href: "/settings" }],
+  },
 ];
 
 export default function Sidebar() {
