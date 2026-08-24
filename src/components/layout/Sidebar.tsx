@@ -17,7 +17,10 @@ const navGroups = [
   },
   {
     label: "AI Tools",
-    items: [{ label: "Trending Topics", href: "/trending-topics" }],
+    items: [
+      { label: "Trending Topics", href: "/trending-topics" },
+      { label: "Viral Opportunities", href: "/viral-opportunities" },
+    ],
   },
 ];
 
