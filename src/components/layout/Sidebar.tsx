@@ -20,6 +20,7 @@ const navGroups = [
     items: [
       { label: "Trending Topics", href: "/trending-topics" },
       { label: "Viral Opportunities", href: "/viral-opportunities" },
+      { label: "Best Posting Times", href: "/best-posting-times" },
     ],
   },
 ];
