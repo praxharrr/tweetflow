@@ -17,21 +17,21 @@ export default function StatCard({
 }: StatCardProps) {
   const hintColor =
     trend === "up"
-      ? "text-emerald-600"
+      ? "text-success"
       : trend === "down"
-      ? "text-red-500"
-      : "text-neutral-400";
+      ? "text-danger"
+      : "text-ink-tertiary";
 
   return (
-    <div className="rounded-2xl border border-neutral-200 bg-white p-5">
+    <div className="rounded-lg border border-hairline bg-surface-1 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium uppercase tracking-wide text-neutral-400">
+        <span className="text-eyebrow uppercase text-ink-subtle">
           {label}
         </span>
-        <Icon size={18} className="text-neutral-400" />
+        <Icon size={18} className="text-ink-subtle" />
       </div>
-      <div className="mt-3 text-2xl font-bold text-neutral-900">{value}</div>
-      {hint && <div className={`mt-1 text-xs font-medium ${hintColor}`}>{hint}</div>}
+      <div className="mt-3 text-display-md text-ink">{value}</div>
+      {hint && <div className={`mt-1 text-caption font-medium ${hintColor}`}>{hint}</div>}
     </div>
   );
 }

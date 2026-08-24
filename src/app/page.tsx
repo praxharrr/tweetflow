@@ -24,8 +24,8 @@ export default async function Home() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
-      <p className="mt-1 text-sm text-neutral-500">
+      <h1 className="text-headline text-ink">Dashboard</h1>
+      <p className="mt-1 text-body-sm text-ink-subtle">
         Welcome back to Tweetflow.
       </p>
 
@@ -44,7 +44,7 @@ export default async function Home() {
         <div className="lg:col-span-2">
           <Panel title="Scheduled Tweets Queue" icon={Clock}>
             {scheduledPosts.length === 0 ? (
-              <p className="py-6 text-center text-sm text-neutral-400">
+              <p className="py-6 text-center text-body-sm text-ink-tertiary">
                 No tweets scheduled yet.
               </p>
             ) : (
@@ -52,12 +52,12 @@ export default async function Home() {
                 {scheduledPosts.map((post) => (
                   <div
                     key={post.id}
-                    className="flex items-center justify-between rounded-lg border border-neutral-100 px-3 py-2"
+                    className="flex items-center justify-between rounded-md border border-hairline px-3 py-2"
                   >
-                    <p className="line-clamp-1 text-sm text-neutral-700">
+                    <p className="line-clamp-1 text-body-sm text-ink-muted">
                       {post.content}
                     </p>
-                    <span className="shrink-0 text-xs text-neutral-400">
+                    <span className="shrink-0 text-caption text-ink-tertiary">
                       {post.scheduledFor
                         ? new Date(post.scheduledFor).toLocaleDateString(
                             "en-IN",
@@ -76,16 +76,16 @@ export default async function Home() {
         </div>
         <Panel title="Connected Accounts">
           {twitterAccount ? (
-            <div className="flex items-center gap-2 rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2">
-              <CheckCircle2 size={16} className="text-emerald-600" />
-              <span className="text-sm font-medium text-emerald-700">
+            <div className="flex items-center gap-2 rounded-md border border-hairline bg-surface-2 px-3 py-2">
+              <CheckCircle2 size={16} className="text-success" />
+              <span className="text-body-sm font-medium text-ink">
                 @{twitterAccount.username}
               </span>
             </div>
           ) : (
             <a
               href="/api/auth/twitter/connect"
-              className="block w-full rounded-lg border border-neutral-200 py-2 text-center text-sm font-medium text-neutral-600 hover:bg-neutral-50"
+              className="block w-full rounded-md bg-primary py-2 text-center text-button text-on-primary transition-colors hover:bg-primary-hover"
             >
               Connect X Account
             </a>

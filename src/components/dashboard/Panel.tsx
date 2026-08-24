@@ -10,11 +10,11 @@ interface PanelProps {
 
 export default function Panel({ title, icon: Icon, action, children }: PanelProps) {
   return (
-    <div className="rounded-2xl border border-neutral-200 bg-white p-5">
+    <div className="rounded-lg border border-hairline bg-surface-1 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          {Icon && <Icon size={16} className="text-neutral-500" />}
-          <h3 className="text-sm font-semibold text-neutral-800">{title}</h3>
+          {Icon && <Icon size={16} className="text-ink-subtle" />}
+          <h3 className="text-card-title text-ink">{title}</h3>
         </div>
         {action}
       </div>

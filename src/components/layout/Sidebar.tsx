@@ -33,26 +33,32 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-60 shrink-0 border-r border-neutral-200 bg-white px-4 py-6">
-      <div className="mb-8 px-2 text-lg font-bold">Tweetflow</div>
+    <aside className="flex w-60 shrink-0 flex-col border-r border-hairline bg-canvas px-4 py-6">
+      <div className="mb-8 flex items-center gap-2 px-2">
+        <span className="h-2 w-2 rounded-full bg-primary" />
+        <span className="text-card-title text-ink">Tweetflow</span>
+      </div>
       {navGroups.map((group) => (
         <div key={group.label} className="mb-6">
-          <div className="mb-2 px-3 text-xs font-semibold uppercase tracking-wide text-neutral-400">
+          <div className="mb-2 px-3 text-eyebrow uppercase text-ink-tertiary">
             {group.label}
           </div>
-          <nav className="flex flex-col gap-1">
+          <nav className="flex flex-col gap-0.5">
             {group.items.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`relative rounded-md px-3 py-2 text-body-sm transition-colors ${
                     isActive
-                      ? "bg-neutral-900 text-white"
-                      : "text-neutral-600 hover:bg-neutral-100"
+                      ? "bg-surface-1 text-ink"
+                      : "text-ink-subtle hover:bg-surface-1 hover:text-ink"
                   }`}
                 >
+                  {isActive && (
+                    <span className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-primary" />
+                  )}
                   {item.label}
                 </Link>
               );

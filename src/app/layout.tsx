@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: "Tweetflow",
@@ -13,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="flex min-h-screen bg-neutral-50">
+    <html lang="en" className={inter.variable}>
+      <body className="flex min-h-screen bg-canvas font-sans text-ink antialiased">
         <Sidebar />
         <main className="flex-1 p-8">{children}</main>
       </body>
