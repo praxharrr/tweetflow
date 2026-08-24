@@ -42,7 +42,7 @@ export default function TrendingTopicsPage() {
     <div>
       <h1 className="text-2xl font-bold text-neutral-900">Trending Topics</h1>
       <p className="mt-1 text-sm text-neutral-500">
-        Real-time web search for what's actually trending in your niche.
+        Real-time web search for what&apos;s actually trending in your niche.
       </p>
 
       <div className="mt-6 flex max-w-xl gap-2">
@@ -67,7 +67,7 @@ export default function TrendingTopicsPage() {
           <div className="col-span-full flex flex-col items-center justify-center rounded-2xl border border-dashed border-neutral-200 py-16 text-center">
             <TrendingUp size={28} className="text-neutral-300" />
             <p className="mt-3 text-sm text-neutral-400">
-              Enter a niche and search to see what's trending right now.
+              Enter a niche and search to see what&apos;s trending right now.
             </p>
           </div>
         )}
