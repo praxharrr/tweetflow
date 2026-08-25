@@ -1,15 +1,38 @@
 import TweetComposer from "@/components/compose/TweetComposer";
+import PageHeader from "@/components/ui/PageHeader";
+import { prisma } from "@/lib/prisma";
 
-export default function ComposePage() {
+export default async function ComposePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ topic?: string; scheduleAt?: string }>;
+}) {
+  const params = await searchParams;
+
+  const [account, settings] = await Promise.all([
+    prisma.twitterAccount.findFirst(),
+    prisma.settings.upsert({
+      where: { id: "singleton" },
+      create: { id: "singleton" },
+      update: {},
+    }),
+  ]);
+
+  const displayName = settings.displayName || "You";
+  const handle = account?.username ?? displayName.toLowerCase().replace(/\s+/g, "");
+
   return (
     <div>
-      <h1 className="text-2xl font-bold text-neutral-900">New Tweet</h1>
-      <p className="mt-1 text-sm text-neutral-500">
-        Draft a tweet, or let AI help you write one.
-      </p>
+      <PageHeader title="New Tweet" subtitle="Draft a tweet, or let AI help you write one." />
 
-      <div className="mt-6 max-w-2xl">
-        <TweetComposer />
+      <div className="mt-6">
+        <TweetComposer
+          hasAccount={!!account}
+          displayName={displayName}
+          handle={handle}
+          initialTopic={params.topic}
+          initialScheduleAt={params.scheduleAt}
+        />
       </div>
     </div>
   );

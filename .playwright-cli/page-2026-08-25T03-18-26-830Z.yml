@@ -1,0 +1,104 @@
+- generic [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]: Tweetflow
+    - button "Search ⌘K" [ref=e7]:
+      - generic [ref=e8]: Search
+      - generic [ref=e12]: ⌘K
+    - generic [ref=e13]:
+      - generic [ref=e14]: Navigation
+      - navigation [ref=e15]:
+        - link "Dashboard" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=e22] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=e26] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=e30] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=e35] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=e39] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=e42]:
+      - generic [ref=e43]: AI Tools
+      - navigation [ref=e44]:
+        - link "Trending Topics" [ref=e45] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=e49] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=e52] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=e56]:
+      - generic [ref=e57]: Account
+      - navigation [ref=e58]:
+        - link "Settings" [ref=e59] [cursor=pointer]:
+          - /url: /settings
+    - generic [ref=e63]: 1-day posting streak
+  - main [ref=e67]:
+    - generic [ref=e69]:
+      - generic [ref=e70]:
+        - heading "Dashboard" [level=1] [ref=e71]
+        - paragraph [ref=e72]: Welcome back to Tweetflow.
+      - generic [ref=e73]:
+        - generic [ref=e75]:
+          - generic [ref=e76]: Total Tweets
+          - generic [ref=e80]:
+            - generic [ref=e81]: "7"
+            - generic [ref=e82]: Not enoughdata yet
+        - generic [ref=e85]:
+          - generic [ref=e86]: Scheduled Posts
+          - generic [ref=e91]:
+            - generic [ref=e92]: "4"
+            - generic [ref=e93]: Not enoughdata yet
+        - generic [ref=e95]:
+          - generic [ref=e96]: Engagement Forecast
+          - generic [ref=e101]:
+            - paragraph [ref=e102]: Connect your X account to unlock forecasts.
+            - link "Connect account" [ref=e104] [cursor=pointer]:
+              - /url: /settings
+        - generic [ref=e105]:
+          - generic [ref=e106]: Active Automations
+          - generic [ref=e110]:
+            - paragraph [ref=e111]: No automations configured yet.
+            - generic [ref=e112]: Not available yet
+      - generic [ref=e114]:
+        - generic [ref=e116]:
+          - heading "Scheduled Tweets Queue" [level=3] [ref=e122]
+          - generic [ref=e123]:
+            - generic [ref=e124]:
+              - paragraph [ref=e125]: "Just saw Elon Musk's latest tweet: 'I'm mad.' No context, no explanation, just a single emoji. It got everyone scrambling. Let's dig into what's driving the billionaire's fury."
+              - generic [ref=e126]: 24 Aug
+            - generic [ref=e127]:
+              - paragraph [ref=e128]: But it's not just EU policy. He's also frustrated with the Starship launch schedule. The 2024 launch window is slipping, and he's publicly threatened to skip the 'SpaceX is a startup' narrative.
+              - generic [ref=e129]: 24 Aug
+            - generic [ref=e130]:
+              - paragraph [ref=e131]: And then there's the Twitter acquisition fallout. Musk's been dealing with layoffs, policy changes, and a backlash that feels like a personal attack. The 'mad' tweet could be a response to that media storm.
+              - generic [ref=e132]: 24 Aug
+            - generic [ref=e133]:
+              - paragraph [ref=e134]: Rumor has it he's fed up with the EU's battery regulations that could delay Tesla's new Model 3 rollouts. A $100k battery price hike would hit margins hard. Musk's anger? A warning to regulators.
+              - generic [ref=e135]: 28 Aug
+        - generic [ref=e136]:
+          - heading "Connected Accounts" [level=3] [ref=e139]
+          - generic [ref=e140]:
+            - paragraph [ref=e141]: No X account connected yet.
+            - link "Connect X Account" [ref=e143] [cursor=pointer]:
+              - /url: /settings
+  - dialog "Command palette" [ref=e160]:
+    - generic [ref=e161]:
+      - textbox "Command palette search" [active] [ref=e165]:
+        - /placeholder: Search pages, drafts, queue…
+      - generic [ref=e166]: Esc
+    - generic [ref=e168]:
+      - generic [ref=e169]: Navigate
+      - button "Dashboard" [ref=e170]
+      - button "New Tweet" [ref=e180]
+      - button "Threads" [ref=e185]
+      - button "Drafts" [ref=e190]
+      - button "Queue" [ref=e196]
+      - button "Calendar" [ref=e201]
+      - button "Trending Topics" [ref=e205]
+      - button "Viral Opportunities" [ref=e210]
+      - button "Best Posting Times" [ref=e214]
+      - button "Settings" [ref=e219]
+  - button "Open Next.js Dev Tools" [ref=e149] [cursor=pointer]
+  - alert [ref=e224]

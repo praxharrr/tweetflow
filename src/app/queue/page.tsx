@@ -1,5 +1,8 @@
 import { prisma } from "@/lib/prisma";
-import QueueList from "@/components/queue/QueueList";
+import QueueTimeline from "@/components/queue/QueueTimeline";
+import DensityStrip from "@/components/queue/DensityStrip";
+import PageHeader from "@/components/ui/PageHeader";
+import TwoColumnLayout from "@/components/ui/TwoColumnLayout";
 
 export default async function QueuePage() {
   const posts = await prisma.post.findMany({
@@ -7,20 +10,29 @@ export default async function QueuePage() {
     orderBy: { scheduledFor: "asc" },
   });
 
+  const scheduledDates = posts
+    .map((p) => p.scheduledFor?.toISOString())
+    .filter((d): d is string => !!d);
+
   return (
     <div>
-      <h1 className="text-2xl font-bold text-neutral-900">Queue</h1>
-      <p className="mt-1 text-sm text-neutral-500">
-        {posts.length} tweet{posts.length !== 1 ? "s" : ""} scheduled
-      </p>
+      <PageHeader
+        title="Queue"
+        subtitle={`${posts.length} tweet${posts.length !== 1 ? "s" : ""} scheduled`}
+      />
 
-      <div className="mt-6 max-w-2xl">
-        <QueueList
-          posts={posts.map((p) => ({
-            id: p.id,
-            content: p.content,
-            scheduledFor: p.scheduledFor?.toISOString() ?? null,
-          }))}
+      <div className="mt-6">
+        <TwoColumnLayout
+          left={
+            <QueueTimeline
+              posts={posts.map((p) => ({
+                id: p.id,
+                content: p.content,
+                scheduledFor: p.scheduledFor!.toISOString(),
+              }))}
+            />
+          }
+          right={<DensityStrip scheduledDates={scheduledDates} />}
         />
       </div>
     </div>

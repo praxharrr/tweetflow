@@ -1,0 +1,60 @@
+- generic [ref=f2e1]:
+  - complementary [ref=f2e2]:
+    - generic [ref=f2e3]: Tweetflow
+    - generic [ref=f2e7]:
+      - generic [ref=f2e8]: Navigation
+      - navigation [ref=f2e9]:
+        - link "Dashboard" [ref=f2e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=f2e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=f2e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=f2e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=f2e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=f2e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=f2e36]:
+      - generic [ref=f2e37]: AI Tools
+      - navigation [ref=f2e38]:
+        - link "Trending Topics" [ref=f2e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=f2e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=f2e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=f2e50]:
+      - generic [ref=f2e51]: Account
+      - navigation [ref=f2e52]:
+        - link "Settings" [ref=f2e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=f2e57]:
+    - generic [ref=f2e59]:
+      - generic [ref=f2e61]:
+        - heading "New Tweet" [level=1] [ref=f2e62]
+        - paragraph [ref=f2e63]: Draft a tweet, or let AI help you write one.
+      - generic [ref=f2e65]:
+        - status [ref=f2e66]
+        - generic [ref=f2e67]:
+          - textbox "AI topic or idea" [ref=f2e68]:
+            - /placeholder: Give AI a topic or idea to write about…
+          - button "AI Assist" [disabled] [ref=f2e69]
+        - generic [ref=f2e73]:
+          - generic [ref=f2e74]: Compose Tweet
+          - generic [ref=f2e75]: 0 / 280
+        - textbox "Tweet content" [ref=f2e76]:
+          - /placeholder: What is happening? Share an actionable insight, update, or hook…
+        - generic [ref=f2e77]:
+          - generic [ref=f2e78]:
+            - button "Attach" [ref=f2e79]
+            - generic [ref=f2e82]:
+              - switch "Schedule for later" [checked] [active] [ref=f2e83]
+              - text: Schedule
+            - textbox "Scheduled date and time" [ref=f2e113]
+          - generic [ref=f2e85]:
+            - button "Save Draft" [disabled] [ref=f2e86]
+            - button "Schedule" [disabled] [ref=f2e114]
+  - button "Open Next.js Dev Tools" [ref=f2e101] [cursor=pointer]
+  - alert [ref=f2e119]

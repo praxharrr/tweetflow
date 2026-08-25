@@ -1,0 +1,70 @@
+- generic [active] [ref=f7e1]:
+  - complementary [ref=f7e2]:
+    - generic [ref=f7e3]: Tweetflow
+    - generic [ref=f7e7]:
+      - generic [ref=f7e8]: Navigation
+      - navigation [ref=f7e9]:
+        - link "Dashboard" [ref=f7e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=f7e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=f7e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=f7e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=f7e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=f7e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=f7e36]:
+      - generic [ref=f7e37]: AI Tools
+      - navigation [ref=f7e38]:
+        - link "Trending Topics" [ref=f7e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=f7e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=f7e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=f7e50]:
+      - generic [ref=f7e51]: Account
+      - navigation [ref=f7e52]:
+        - link "Settings" [ref=f7e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=f7e57]:
+    - generic [ref=f7e59]:
+      - generic [ref=f7e61]:
+        - heading "Settings" [level=1] [ref=f7e62]
+        - paragraph [ref=f7e63]: Manage your connected accounts and workspace.
+      - generic [ref=f7e64]:
+        - generic [ref=f7e65]:
+          - heading "Connected Accounts" [level=2] [ref=f7e66]
+          - paragraph [ref=f7e67]: Tweetflow posts to X on your behalf using this connection.
+          - generic [ref=f7e69]:
+            - link "Connect X Account" [ref=f7e70] [cursor=pointer]:
+              - /url: /api/auth/twitter/connect
+            - paragraph [ref=f7e71]: Not connected yet — publishing stays disabled until you connect.
+        - generic [ref=f7e72]:
+          - heading "Preferences" [level=2] [ref=f7e73]
+          - paragraph [ref=f7e74]: Applied across composing, threads, and AI generation.
+          - generic [ref=f7e76]:
+            - generic [ref=f7e77]:
+              - text: Workspace name
+              - textbox [ref=f7e78]: Tweetflow
+            - generic [ref=f7e79]:
+              - text: Timezone
+              - textbox "e.g. Asia/Kolkata" [ref=f7e80]: Asia/Kolkata
+            - generic [ref=f7e81]:
+              - text: Default AI tone
+              - paragraph [ref=f7e82]: Applied to every AI-generated tweet and thread.
+              - generic [ref=f7e83]:
+                - button "Direct" [ref=f7e84]
+                - button "Casual" [ref=f7e85]
+                - button "Professional" [ref=f7e86]
+                - button "Bold" [ref=f7e87]
+            - generic [ref=f7e88]:
+              - generic [ref=f7e89]:
+                - paragraph [ref=f7e90]: Auto-number threads
+                - paragraph [ref=f7e91]: Prefixes each tweet with "n/total".
+              - switch "Auto-number threads" [checked] [ref=f7e92]
+            - button "Save preferences" [ref=f7e95]
+  - button "Open Next.js Dev Tools" [ref=f7e101] [cursor=pointer]

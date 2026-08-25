@@ -1,15 +1,29 @@
 import ThreadComposer from "@/components/threads/ThreadComposer";
+import PageHeader from "@/components/ui/PageHeader";
+import { prisma } from "@/lib/prisma";
 
-export default function ThreadsPage() {
+export default async function ThreadsPage() {
+  const [account, settings] = await Promise.all([
+    prisma.twitterAccount.findFirst(),
+    prisma.settings.upsert({
+      where: { id: "singleton" },
+      create: { id: "singleton" },
+      update: {},
+    }),
+  ]);
+
+  const displayName = settings.displayName || "You";
+  const handle = account?.username ?? displayName.toLowerCase().replace(/\s+/g, "");
+
   return (
     <div>
-      <h1 className="text-2xl font-bold text-neutral-900">Threads</h1>
-      <p className="mt-1 text-sm text-neutral-500">
-        Compose a connected sequence of tweets, or let AI draft the whole thread.
-      </p>
+      <PageHeader
+        title="Threads"
+        subtitle="Compose a connected sequence of tweets, or let AI draft the whole thread."
+      />
 
-      <div className="mt-6 max-w-2xl">
-        <ThreadComposer />
+      <div className="mt-6">
+        <ThreadComposer displayName={displayName} handle={handle} />
       </div>
     </div>
   );

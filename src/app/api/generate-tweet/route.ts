@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Groq from "groq-sdk";
+import { prisma } from "@/lib/prisma";
+import { toneInstruction } from "@/lib/tone";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -10,13 +12,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
   }
 
+  const settings = await prisma.settings.findUnique({ where: { id: "singleton" } });
+
   const completion = await groq.chat.completions.create({
     model: "openai/gpt-oss-20b",
     messages: [
       {
         role: "system",
         content:
-          "You write sharp, engaging tweets under 280 characters. No hashtags unless asked. No quotation marks around the output. Just the tweet text.",
+          `You write sharp, engaging tweets under 280 characters. ${toneInstruction(settings?.defaultAiTone)} No hashtags unless asked. No quotation marks around the output. Just the tweet text.`,
       },
       { role: "user", content: prompt },
     ],

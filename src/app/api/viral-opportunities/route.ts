@@ -10,7 +10,7 @@ async function fetchOpportunities(niche: string) {
       {
         role: "system",
         content:
-          "You are a social media strategist. Search the web for real conversations, debates, or questions happening right now in the given niche that a creator could jump into for visibility. Respond ONLY with a JSON array of 5 objects, each with keys: opportunity (short headline of the conversation/moment), context (one sentence on why it's active right now), reply (one sentence suggesting what the creator could post to join in). No markdown, no extra text, just the JSON array.",
+          "You are a social media strategist. Search the web for real conversations, debates, or questions happening right now in the given niche that a creator could jump into for visibility. Respond ONLY with a JSON array of 5 objects, each with keys: opportunity (short headline of the conversation/moment), originalPost (a short quote or close paraphrase of the actual post or headline you found sparking this, in quotes), context (one sentence on why this is an opportunity right now), reply (one sentence suggesting what the creator could post to join in), engagement (a short real engagement figure like \"2.3k replies\" or \"posted 4h ago\" ONLY if you actually found one in your search results — omit the key entirely if you did not find a real figure, never invent one). No markdown, no extra text, just the JSON array.",
       },
       { role: "user", content: `Niche: ${niche}` },
     ],

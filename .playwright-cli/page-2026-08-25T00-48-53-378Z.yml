@@ -1,0 +1,78 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]: Tweetflow
+    - generic [ref=e7]:
+      - generic [ref=e8]: Navigation
+      - navigation [ref=e9]:
+        - link "Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=e36]:
+      - generic [ref=e37]: AI Tools
+      - navigation [ref=e38]:
+        - link "Trending Topics" [ref=e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=e50]:
+      - generic [ref=e51]: Account
+      - navigation [ref=e52]:
+        - link "Settings" [ref=e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=e57]:
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - heading "Dashboard" [level=1] [ref=e60]
+        - paragraph [ref=e61]: Welcome back to Tweetflow.
+      - generic [ref=e62]:
+        - generic [ref=e64]:
+          - generic [ref=e65]: Total Tweets
+          - generic [ref=e69]: "7"
+        - generic [ref=e74]:
+          - generic [ref=e75]: Scheduled Posts
+          - generic [ref=e80]: "4"
+        - generic [ref=e84]:
+          - generic [ref=e85]: Engagement Forecast
+          - generic [ref=e90]:
+            - paragraph [ref=e91]: Connect your X account to unlock forecasts.
+            - link "Connect account" [ref=e92] [cursor=pointer]:
+              - /url: /settings
+        - generic [ref=e93]:
+          - generic [ref=e94]: Active Automations
+          - generic [ref=e98]:
+            - paragraph [ref=e99]: No automations configured yet.
+            - generic [ref=e100]: Not available yet
+      - generic [ref=e102]:
+        - generic [ref=e104]:
+          - heading "Scheduled Tweets Queue" [level=3] [ref=e110]
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - paragraph [ref=e113]: "Just saw Elon Musk's latest tweet: 'I'm mad.' No context, no explanation, just a single emoji. It got everyone scrambling. Let's dig into what's driving the billionaire's fury."
+              - generic [ref=e114]: 24 Aug
+            - generic [ref=e115]:
+              - paragraph [ref=e116]: Rumor has it he's fed up with the EU's battery regulations that could delay Tesla's new Model 3 rollouts. A $100k battery price hike would hit margins hard. Musk's anger? A warning to regulators.
+              - generic [ref=e117]: 24 Aug
+            - generic [ref=e118]:
+              - paragraph [ref=e119]: But it's not just EU policy. He's also frustrated with the Starship launch schedule. The 2024 launch window is slipping, and he's publicly threatened to skip the 'SpaceX is a startup' narrative.
+              - generic [ref=e120]: 24 Aug
+            - generic [ref=e121]:
+              - paragraph [ref=e122]: And then there's the Twitter acquisition fallout. Musk's been dealing with layoffs, policy changes, and a backlash that feels like a personal attack. The 'mad' tweet could be a response to that media storm.
+              - generic [ref=e123]: 24 Aug
+        - generic [ref=e124]:
+          - heading "Connected Accounts" [level=3] [ref=e127]
+          - generic [ref=e128]:
+            - paragraph [ref=e129]: No X account connected yet.
+            - link "Connect X Account" [ref=e130] [cursor=pointer]:
+              - /url: /settings
+  - button "Open Next.js Dev Tools" [ref=e136] [cursor=pointer]

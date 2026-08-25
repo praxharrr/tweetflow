@@ -1,0 +1,132 @@
+- generic [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]: Tweetflow
+    - generic [ref=e7]:
+      - generic [ref=e8]: Navigation
+      - navigation [ref=e9]:
+        - link "Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=e36]:
+      - generic [ref=e37]: AI Tools
+      - navigation [ref=e38]:
+        - link "Trending Topics" [ref=e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=e50]:
+      - generic [ref=e51]: Account
+      - navigation [ref=e52]:
+        - link "Settings" [ref=e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=e57]:
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - heading "Calendar" [level=1] [ref=e62]
+          - paragraph [ref=e63]: Click an empty slot to schedule, drag a tweet to reschedule.
+        - generic [ref=e64]:
+          - link "Week" [ref=e65] [cursor=pointer]:
+            - /url: /calendar?view=week
+          - link "Month" [active] [ref=e66] [cursor=pointer]:
+            - /url: /calendar?view=month
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e69]: August 2026
+          - generic [ref=e73]:
+            - link [ref=e74] [cursor=pointer]:
+              - /url: /calendar?view=month&month=2026-07
+            - link [ref=e77] [cursor=pointer]:
+              - /url: /calendar?view=month&month=2026-09
+        - generic [ref=e505]:
+          - generic [ref=e506]:
+            - generic [ref=e507]: Mon
+            - generic [ref=e508]: Tue
+            - generic [ref=e509]: Wed
+            - generic [ref=e510]: Thu
+            - generic [ref=e511]: Fri
+            - generic [ref=e512]: Sat
+            - generic [ref=e513]: Sun
+          - generic [ref=e514]:
+            - link "1" [ref=e520] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-07-27
+            - link "2" [ref=e522] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-07-27
+            - link "3" [ref=e524] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-03
+            - link "4" [ref=e526] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-03
+            - link "5" [ref=e528] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-03
+            - link "6" [ref=e530] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-03
+            - link "7" [ref=e532] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-03
+            - link "8" [ref=e534] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-03
+            - link "9" [ref=e536] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-03
+            - link "10" [ref=e538] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-10
+            - link "11" [ref=e540] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-10
+            - link "12" [ref=e542] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-10
+            - link "13" [ref=e544] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-10
+            - link "14" [ref=e546] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-10
+            - link "15" [ref=e548] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-10
+            - link "16" [ref=e550] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-10
+            - link "17" [ref=e552] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-17
+            - link "18" [ref=e554] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-17
+            - link "19" [ref=e556] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-17
+            - link "20" [ref=e558] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-17
+            - link "21" [ref=e560] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-17
+            - link "22" [ref=e562] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-17
+            - link "23" [ref=e564] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-17
+            - 'link "24 Just saw Elon Musk''s latest tweet: ''I''m mad.'' No context, no explanation, just a single emoji. It got everyone scrambling. Let''s dig into what''s driving the billionaire''s fury. But it''s not just EU policy. He''s also frustrated with the Starship launch schedule. The 2024 launch window is slipping, and he''s publicly threatened to skip the ''SpaceX is a startup'' narrative. And then there''s the Twitter acquisition fallout. Musk''s been dealing with layoffs, policy changes, and a backlash that feels like a personal attack. The ''mad'' tweet could be a response to that media storm." [ref=e566] [cursor=pointer]':
+              - /url: /calendar?view=week&week=2026-08-24
+              - generic [ref=e567]: "24"
+              - generic [ref=e568]:
+                - generic [ref=e569]: "Just saw Elon Musk's latest tweet: 'I'm mad.' No context, no explanation, just a single emoji. It got everyone scrambling. Let's dig into what's driving the billionaire's fury."
+                - generic [ref=e570]: But it's not just EU policy. He's also frustrated with the Starship launch schedule. The 2024 launch window is slipping, and he's publicly threatened to skip the 'SpaceX is a startup' narrative.
+                - generic [ref=e571]: And then there's the Twitter acquisition fallout. Musk's been dealing with layoffs, policy changes, and a backlash that feels like a personal attack. The 'mad' tweet could be a response to that media storm.
+            - link "25" [ref=e572] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-24
+            - link "26" [ref=e574] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-24
+            - link "27" [ref=e576] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-24
+            - link "28 Rumor has it he's fed up with the EU's battery regulations that could delay Tesla's new Model 3 rollouts. A $100k battery price hike would hit margins hard. Musk's anger? A warning to regulators." [ref=e578] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-24
+              - generic [ref=e579]: "28"
+              - generic [ref=e580]: Rumor has it he's fed up with the EU's battery regulations that could delay Tesla's new Model 3 rollouts. A $100k battery price hike would hit margins hard. Musk's anger? A warning to regulators.
+            - link "29" [ref=e582] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-24
+            - link "30" [ref=e584] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-24
+            - link "31" [ref=e586] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-31
+  - button "Open Next.js Dev Tools" [ref=e497] [cursor=pointer]
+  - alert [ref=e504]: Calendar

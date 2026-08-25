@@ -2,6 +2,15 @@
 
 import { useState } from "react";
 import { Clock3, Loader2, Search, Users } from "lucide-react";
+import PageHeader from "@/components/ui/PageHeader";
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+import { fieldClass } from "@/components/ui/field-styles";
+import AIEmptyState from "@/components/ai-tools/AIEmptyState";
+import CardSkeleton from "@/components/ai-tools/CardSkeleton";
+import PostingTimeHeatmap from "@/components/ai-tools/PostingTimeHeatmap";
+
+const EXAMPLE_NICHES = ["AI tools and tech", "Personal finance", "Fitness", "Indie games"];
 
 interface Window {
   window: string;
@@ -17,8 +26,10 @@ export default function BestPostingTimesPage() {
   const [hasSearched, setHasSearched] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  async function handleSearch() {
-    if (!niche.trim()) return;
+  async function handleSearch(nicheOverride?: string) {
+    const searchNiche = nicheOverride ?? niche;
+    if (!searchNiche.trim()) return;
+    if (nicheOverride) setNiche(nicheOverride);
     setIsLoading(true);
     setHasSearched(true);
     setErrorMsg(null);
@@ -26,7 +37,7 @@ export default function BestPostingTimesPage() {
       const res = await fetch("/api/best-posting-times", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ niche, timezone }),
+        body: JSON.stringify({ niche: searchNiche, timezone }),
       });
       const data = await res.json();
       setWindows(data.windows ?? []);
@@ -41,63 +52,77 @@ export default function BestPostingTimesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-neutral-900">Best Posting Times</h1>
-      <p className="mt-1 text-sm text-neutral-500">
-        Research-backed posting windows for your niche and timezone.
-      </p>
+      <PageHeader
+        title="Best Posting Times"
+        subtitle="Your general engagement pattern, plus research-backed windows for your niche."
+      />
 
-      <div className="mt-6 flex max-w-xl gap-2">
+      <div className="mt-6">
+        <PostingTimeHeatmap />
+      </div>
+
+      <div className="mt-8 flex items-center gap-2">
+        <span className="text-eyebrow uppercase text-white/40">Research for your niche</span>
+        <div className="h-px flex-1 bg-mono-hairline" />
+      </div>
+
+      <div className="mt-4 flex max-w-xl gap-2">
         <input
           value={niche}
           onChange={(e) => setNiche(e.target.value)}
-          placeholder="Your niche or topic..."
-          className="flex-1 rounded-lg border border-neutral-200 px-3 py-2 text-sm outline-none focus:border-neutral-400"
+          placeholder="Your niche or topic…"
+          aria-label="Your niche or topic"
+          className={`${fieldClass} min-w-0 flex-1`}
         />
         <input
           value={timezone}
           onChange={(e) => setTimezone(e.target.value)}
           placeholder="Timezone"
-          className="w-24 rounded-lg border border-neutral-200 px-3 py-2 text-sm outline-none focus:border-neutral-400"
+          aria-label="Timezone"
+          className={`${fieldClass} !w-24 shrink-0`}
         />
-        <button
-          onClick={handleSearch}
+        <Button
+          variant="primary"
+          onClick={() => handleSearch()}
           disabled={!niche.trim() || isLoading}
-          className="flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-40"
+          className="shrink-0"
         >
           {isLoading ? <Loader2 size={16} className="animate-spin" /> : <Search size={16} />}
-          {isLoading ? "Thinking..." : "Get Times"}
-        </button>
+          {isLoading ? "Thinking…" : "Get Times"}
+        </Button>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {!hasSearched && (
-          <div className="col-span-full flex flex-col items-center justify-center rounded-2xl border border-dashed border-neutral-200 py-16 text-center">
-            <Clock3 size={28} className="text-neutral-300" />
-            <p className="mt-3 text-sm text-neutral-400">
-              Enter your niche to get suggested posting windows.
-            </p>
-          </div>
+      <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {isLoading && Array.from({ length: 2 }).map((_, i) => <CardSkeleton key={i} />)}
+
+        {!hasSearched && !isLoading && (
+          <AIEmptyState
+            message="Enter your niche for research-backed windows layered on top of the general pattern above."
+            examples={EXAMPLE_NICHES}
+            onPick={handleSearch}
+          />
         )}
 
         {hasSearched && !isLoading && windows.length === 0 && (
-          <div className="col-span-full py-16 text-center text-sm text-neutral-400">
+          <div className="col-span-full py-16 text-center text-body-sm text-mono-ink-faint">
             {errorMsg ?? "Couldn't generate recommendations — try a different niche."}
           </div>
         )}
 
-        {windows.map((w, i) => (
-          <div key={i} className="rounded-2xl border border-neutral-200 bg-white p-4">
-            <div className="flex items-start gap-2">
-              <Clock3 size={16} className="mt-0.5 shrink-0 text-blue-500" />
-              <h3 className="text-sm font-semibold text-neutral-900">{w.window}</h3>
-            </div>
-            <div className="mt-2 flex items-start gap-2 text-xs text-neutral-500">
-              <Users size={14} className="mt-0.5 shrink-0" />
-              <span>{w.audience}</span>
-            </div>
-            <p className="mt-2 text-sm text-neutral-600">{w.reason}</p>
-          </div>
-        ))}
+        {!isLoading &&
+          windows.map((w, i) => (
+            <Card key={i} className="p-4">
+              <div className="flex items-start gap-2">
+                <Clock3 size={16} className="mt-0.5 shrink-0 [stroke-width:1.25] text-mono-ink-subtle" />
+                <h3 className="text-body-sm font-semibold text-mono-ink">{w.window}</h3>
+              </div>
+              <div className="mt-2 flex items-start gap-2 text-caption text-mono-ink-faint">
+                <Users size={14} className="mt-0.5 shrink-0 [stroke-width:1.25]" />
+                <span>{w.audience}</span>
+              </div>
+              <p className="mt-2 text-body-sm text-mono-ink-soft">{w.reason}</p>
+            </Card>
+          ))}
       </div>
     </div>
   );

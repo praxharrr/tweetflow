@@ -1,0 +1,117 @@
+- generic [ref=f1e1]:
+  - complementary [ref=f1e2]:
+    - generic [ref=f1e3]: Tweetflow
+    - generic [ref=f1e7]:
+      - generic [ref=f1e8]: Navigation
+      - navigation [ref=f1e9]:
+        - link "Dashboard" [ref=f1e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=f1e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=f1e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=f1e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=f1e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=f1e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=f1e36]:
+      - generic [ref=f1e37]: AI Tools
+      - navigation [ref=f1e38]:
+        - link "Trending Topics" [ref=f1e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=f1e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=f1e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=f1e50]:
+      - generic [ref=f1e51]: Account
+      - navigation [ref=f1e52]:
+        - link "Settings" [ref=f1e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=f1e57]:
+    - generic [ref=f1e59]:
+      - generic [ref=f1e61]:
+        - heading "Threads" [level=1] [ref=f1e62]
+        - paragraph [ref=f1e63]: Compose a connected sequence of tweets, or let AI draft the whole thread.
+      - generic [ref=f1e65]:
+        - generic [ref=f1e67]:
+          - status [ref=f1e68]
+          - generic [ref=f1e69]:
+            - textbox "AI thread topic" [ref=f1e70]:
+              - /placeholder: Give AI a topic to turn into a full thread…
+            - button "Generate Thread" [disabled] [ref=f1e71]
+          - button "Split long text into a thread" [ref=f1e75]
+          - generic [ref=f1e248]:
+            - textbox "Long text to split into a thread" [active] [ref=f1e249]:
+              - /placeholder: Paste a long paragraph — it’ll be broken into 280-character tweets at sentence boundaries…
+            - button "Split into … tweets" [disabled] [ref=f1e251]
+          - generic [ref=f1e82]:
+            - generic [ref=f1e83]:
+              - generic [ref=f1e84]: "1"
+              - generic [ref=f1e87]:
+                - generic [ref=f1e88]:
+                  - generic [ref=f1e89]: Tweet 1/2
+                  - generic [ref=f1e97]:
+                    - status "73 of 280 characters used" [ref=f1e215]
+                    - generic [ref=f1e102]:
+                      - button "Move up" [disabled] [ref=f1e103]
+                      - button "Move down" [ref=f1e106]
+                    - button "Remove tweet" [ref=f1e150]
+                - textbox "Tweet 1 content" [ref=f1e109]:
+                  - /placeholder: Write tweet 1…
+                  - text: Second tweet continues the idea and shows the connecting line and badges.
+            - generic [ref=f1e154]:
+              - generic [ref=f1e155]: "2"
+              - generic [ref=f1e158]:
+                - generic [ref=f1e159]:
+                  - generic [ref=f1e160]: Tweet 2/2
+                  - generic [ref=f1e168]:
+                    - status "69 of 280 characters used" [ref=f1e216]
+                    - generic [ref=f1e173]:
+                      - button "Move up" [ref=f1e174]
+                      - button "Move down" [disabled] [ref=f1e177]
+                    - button "Remove tweet" [ref=f1e180]
+                - textbox "Tweet 2 content" [ref=f1e184]:
+                  - /placeholder: Write tweet 2…
+                  - text: This is the first tweet in a connected thread showing the new layout.
+          - button "Add tweet" [ref=f1e110]
+          - generic [ref=f1e112]:
+            - textbox "Scheduled date and time" [ref=f1e118]
+            - generic [ref=f1e119]:
+              - button "Save Draft" [ref=f1e121]
+              - button "Schedule Thread" [disabled] [ref=f1e126]
+        - generic [ref=f1e132]:
+          - text: Thread preview
+          - generic [ref=f1e133]:
+            - generic [ref=f1e190]:
+              - generic [ref=f1e191]: T
+              - generic [ref=f1e192]:
+                - generic [ref=f1e193]:
+                  - generic [ref=f1e194]:
+                    - generic [ref=f1e195]: Tweetflow
+                    - generic [ref=f1e196]: "@tweetflow"
+                  - generic [ref=f1e197]: 1/2
+                - paragraph [ref=f1e198]: Second tweet continues the idea and shows the connecting line and badges.
+                - generic [ref=f1e199]:
+                  - generic [ref=f1e200]: "0"
+                  - generic [ref=f1e203]: "0"
+                  - generic [ref=f1e209]: "0"
+                  - generic [ref=f1e212]: "0"
+            - generic [ref=f1e223]:
+              - generic [ref=f1e224]: T
+              - generic [ref=f1e225]:
+                - generic [ref=f1e226]:
+                  - generic [ref=f1e227]:
+                    - generic [ref=f1e228]: Tweetflow
+                    - generic [ref=f1e229]: "@tweetflow"
+                  - generic [ref=f1e230]: 2/2
+                - paragraph [ref=f1e231]: This is the first tweet in a connected thread showing the new layout.
+                - generic [ref=f1e232]:
+                  - generic [ref=f1e233]: "0"
+                  - generic [ref=f1e236]: "0"
+                  - generic [ref=f1e242]: "0"
+                  - generic [ref=f1e245]: "0"
+  - button "Open Next.js Dev Tools" [ref=f1e140] [cursor=pointer]
+  - alert [ref=f1e147]

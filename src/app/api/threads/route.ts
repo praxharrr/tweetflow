@@ -10,12 +10,14 @@ export async function POST(req: NextRequest) {
   }
 
   const threadId = crypto.randomUUID();
+  const settings = await prisma.settings.findUnique({ where: { id: "singleton" } });
+  const numbered = settings?.autoThreadNumbering ?? true;
 
   const posts = await prisma.$transaction(
     tweets.map((content: string, index: number) =>
       prisma.post.create({
         data: {
-          content,
+          content: numbered ? `${index + 1}/${tweets.length} ${content}` : content,
           status: status ?? "draft",
           threadId,
           position: index,

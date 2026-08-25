@@ -1,119 +1,183 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, CalendarDays } from "lucide-react";
 import { prisma } from "@/lib/prisma";
+import PageHeader from "@/components/ui/PageHeader";
+import WeekCalendar from "@/components/calendar/WeekCalendar";
+import MonthCalendar from "@/components/calendar/MonthCalendar";
 
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+function mondayOf(date: Date): Date {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  const day = (d.getDay() + 6) % 7;
+  d.setDate(d.getDate() - day);
+  return d;
+}
 
-function getMonthGrid(year: number, monthIndex: number) {
-  const firstOfMonth = new Date(year, monthIndex, 1);
-  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-  const firstWeekday = (firstOfMonth.getDay() + 6) % 7; // shift so Monday = 0
-
-  const cells: (number | null)[] = [];
-  for (let i = 0; i < firstWeekday; i++) cells.push(null);
-  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
-  while (cells.length % 7 !== 0) cells.push(null);
-  return cells;
+function toDateParam(d: Date): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
 export default async function CalendarPage({
   searchParams,
 }: {
-  searchParams: Promise<{ month?: string }>;
+  searchParams: Promise<{ week?: string; month?: string; view?: string }>;
 }) {
   const params = await searchParams;
-  const now = new Date();
-  const [year, month] = params.month
-    ? params.month.split("-").map(Number)
-    : [now.getFullYear(), now.getMonth() + 1];
-  const monthIndex = month - 1;
+  const view = params.view === "month" ? "month" : "week";
 
-  const startOfMonth = new Date(year, monthIndex, 1);
-  const startOfNextMonth = new Date(year, monthIndex + 1, 1);
+  if (view === "month") {
+    const now = new Date();
+    const [year, month] = params.month
+      ? params.month.split("-").map(Number)
+      : [now.getFullYear(), now.getMonth() + 1];
+    const monthIndex = month - 1;
+
+    const startOfMonth = new Date(year, monthIndex, 1);
+    const startOfNextMonth = new Date(year, monthIndex + 1, 1);
+
+    const posts = await prisma.post.findMany({
+      where: {
+        status: "scheduled",
+        scheduledFor: { gte: startOfMonth, lt: startOfNextMonth },
+      },
+      orderBy: { scheduledFor: "asc" },
+    });
+
+    const prevMonth = new Date(year, monthIndex - 1, 1);
+    const nextMonth = new Date(year, monthIndex + 1, 1);
+    const monthLabel = startOfMonth.toLocaleDateString("en-IN", {
+      month: "long",
+      year: "numeric",
+    });
+
+    return (
+      <div>
+        <PageHeader
+          title="Calendar"
+          subtitle="Click an empty slot to schedule, drag a tweet to reschedule."
+          action={<ViewToggle view="month" />}
+        />
+
+        <div className="mt-6 rounded-lg border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <CalendarDays size={18} className="[stroke-width:1.25] text-mono-ink-subtle" />
+              <span className="text-card-title text-mono-ink">{monthLabel}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Link
+                href={`/calendar?view=month&month=${prevMonth.getFullYear()}-${String(prevMonth.getMonth() + 1).padStart(2, "0")}`}
+                className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
+              >
+                <ChevronLeft size={16} />
+              </Link>
+              <Link
+                href={`/calendar?view=month&month=${nextMonth.getFullYear()}-${String(nextMonth.getMonth() + 1).padStart(2, "0")}`}
+                className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
+              >
+                <ChevronRight size={16} />
+              </Link>
+            </div>
+          </div>
+
+          <MonthCalendar
+            year={year}
+            monthIndex={monthIndex}
+            posts={posts.map((p) => ({
+              id: p.id,
+              content: p.content,
+              scheduledFor: p.scheduledFor!.toISOString(),
+            }))}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  const weekStart = params.week ? mondayOf(new Date(params.week)) : mondayOf(new Date());
+  const weekEnd = new Date(weekStart);
+  weekEnd.setDate(weekEnd.getDate() + 7);
 
   const posts = await prisma.post.findMany({
     where: {
       status: "scheduled",
-      scheduledFor: { gte: startOfMonth, lt: startOfNextMonth },
+      scheduledFor: { gte: weekStart, lt: weekEnd },
     },
     orderBy: { scheduledFor: "asc" },
   });
 
-  const postsByDay = new Map<number, typeof posts>();
-  for (const post of posts) {
-    if (!post.scheduledFor) continue;
-    const day = new Date(post.scheduledFor).getDate();
-    postsByDay.set(day, [...(postsByDay.get(day) ?? []), post]);
-  }
+  const prevWeek = new Date(weekStart);
+  prevWeek.setDate(prevWeek.getDate() - 7);
+  const nextWeek = new Date(weekStart);
+  nextWeek.setDate(nextWeek.getDate() + 7);
 
-  const cells = getMonthGrid(year, monthIndex);
-  const monthLabel = startOfMonth.toLocaleDateString("en-IN", {
-    month: "long",
-    year: "numeric",
-  });
-
-  const prev = new Date(year, monthIndex - 1, 1);
-  const next = new Date(year, monthIndex + 1, 1);
-  const prevHref = `/calendar?month=${prev.getFullYear()}-${String(prev.getMonth() + 1).padStart(2, "0")}`;
-  const nextHref = `/calendar?month=${next.getFullYear()}-${String(next.getMonth() + 1).padStart(2, "0")}`;
+  const weekEndDisplay = new Date(weekStart);
+  weekEndDisplay.setDate(weekEndDisplay.getDate() + 6);
+  const rangeLabel = `${weekStart.toLocaleDateString("en-IN", { day: "numeric", month: "short" })} – ${weekEndDisplay.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}`;
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-neutral-900">Calendar</h1>
-      <p className="mt-1 text-sm text-neutral-500">Scheduled tweets across the month.</p>
+      <PageHeader
+        title="Calendar"
+        subtitle="Click an empty slot to schedule, drag a tweet to reschedule."
+        action={<ViewToggle view="week" />}
+      />
 
-      <div className="mt-6 rounded-2xl border border-neutral-200 bg-white p-5">
+      <div className="mt-6 rounded-lg border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <CalendarDays size={18} className="text-neutral-400" />
-            <span className="text-sm font-semibold text-neutral-800">{monthLabel}</span>
+            <CalendarDays size={18} className="[stroke-width:1.25] text-mono-ink-subtle" />
+            <span className="text-card-title text-mono-ink">{rangeLabel}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Link href={prevHref} className="rounded-lg border border-neutral-200 p-1.5 hover:bg-neutral-50">
+            <Link
+              href={`/calendar?view=week&week=${toDateParam(prevWeek)}`}
+              className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
+            >
               <ChevronLeft size={16} />
             </Link>
-            <Link href={nextHref} className="rounded-lg border border-neutral-200 p-1.5 hover:bg-neutral-50">
+            <Link
+              href={`/calendar?view=week&week=${toDateParam(nextWeek)}`}
+              className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
+            >
               <ChevronRight size={16} />
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-7 gap-1 text-center text-xs font-medium text-neutral-400">
-          {WEEKDAYS.map((day) => (
-            <div key={day} className="py-2">{day}</div>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-7 gap-1">
-          {cells.map((day, i) => (
-            <div
-              key={i}
-              className={`min-h-[80px] rounded-lg border p-1.5 ${day ? "border-neutral-100" : "border-transparent"}`}
-            >
-              {day && (
-                <>
-                  <span className="text-xs text-neutral-400">{day}</span>
-                  <div className="mt-1 flex flex-col gap-1">
-                    {(postsByDay.get(day) ?? []).slice(0, 2).map((post) => (
-                      <div
-                        key={post.id}
-                        className="truncate rounded bg-blue-50 px-1.5 py-0.5 text-[10px] text-blue-700"
-                      >
-                        {post.content}
-                      </div>
-                    ))}
-                    {(postsByDay.get(day)?.length ?? 0) > 2 && (
-                      <span className="text-[10px] text-neutral-400">
-                        +{(postsByDay.get(day)?.length ?? 0) - 2} more
-                      </span>
-                    )}
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
-        </div>
+        <WeekCalendar
+          weekStart={weekStart.toISOString()}
+          posts={posts.map((p) => ({
+            id: p.id,
+            content: p.content,
+            scheduledFor: p.scheduledFor!.toISOString(),
+          }))}
+        />
       </div>
+    </div>
+  );
+}
+
+function ViewToggle({ view }: { view: "week" | "month" }) {
+  return (
+    <div className="flex items-center gap-1 rounded-full border border-mono-hairline p-0.5">
+      <Link
+        href="/calendar?view=week"
+        className={`rounded-full px-3 py-1.5 text-caption font-medium transition-colors duration-150 ${
+          view === "week" ? "bg-white/[0.08] text-mono-ink" : "text-mono-ink-subtle hover:text-mono-ink"
+        }`}
+      >
+        Week
+      </Link>
+      <Link
+        href="/calendar?view=month"
+        className={`rounded-full px-3 py-1.5 text-caption font-medium transition-colors duration-150 ${
+          view === "month" ? "bg-white/[0.08] text-mono-ink" : "text-mono-ink-subtle hover:text-mono-ink"
+        }`}
+      >
+        Month
+      </Link>
     </div>
   );
 }

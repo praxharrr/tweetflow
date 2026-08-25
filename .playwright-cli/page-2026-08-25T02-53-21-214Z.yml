@@ -1,0 +1,248 @@
+- generic [active] [ref=f4e1]:
+  - complementary [ref=f4e2]:
+    - generic [ref=f4e3]: Tweetflow
+    - generic [ref=f4e7]:
+      - generic [ref=f4e8]: Navigation
+      - navigation [ref=f4e9]:
+        - link "Dashboard" [ref=f4e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=f4e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=f4e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=f4e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=f4e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=f4e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=f4e36]:
+      - generic [ref=f4e37]: AI Tools
+      - navigation [ref=f4e38]:
+        - link "Trending Topics" [ref=f4e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=f4e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=f4e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=f4e50]:
+      - generic [ref=f4e51]: Account
+      - navigation [ref=f4e52]:
+        - link "Settings" [ref=f4e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=f4e57]:
+    - generic [ref=f4e59]:
+      - generic [ref=f4e61]:
+        - heading "Best Posting Times" [level=1] [ref=f4e62]
+        - paragraph [ref=f4e63]: Your general engagement pattern, plus research-backed windows for your niche.
+      - generic [ref=f4e65]:
+        - generic [ref=f4e66]:
+          - generic [ref=f4e67]: Weekly engagement pattern
+          - generic [ref=f4e68]: Hover a cell for detail · click to apply
+        - generic [ref=f4e70]:
+          - generic [ref=f4e71]:
+            - generic [ref=f4e73]: 12AM
+            - generic [ref=f4e76]: 3AM
+            - generic [ref=f4e79]: 6AM
+            - generic [ref=f4e82]: 9AM
+            - generic [ref=f4e85]: 12PM
+            - generic [ref=f4e88]: 3PM
+            - generic [ref=f4e91]: 6PM
+            - generic [ref=f4e94]: 9PM
+          - generic [ref=f4e97]:
+            - generic [ref=f4e98]: Mon
+            - button "Mon 12 AM — Low activity. Apply to queue." [ref=f4e99]
+            - button "Mon 1 AM — Low activity. Apply to queue." [ref=f4e100]
+            - button "Mon 2 AM — Low activity. Apply to queue." [ref=f4e101]
+            - button "Mon 3 AM — Low activity. Apply to queue." [ref=f4e102]
+            - button "Mon 4 AM — Low activity. Apply to queue." [ref=f4e103]
+            - button "Mon 5 AM — Low activity. Apply to queue." [ref=f4e104]
+            - button "Mon 6 AM — Average. Apply to queue." [ref=f4e105]
+            - button "Mon 7 AM — Average. Apply to queue." [ref=f4e106]
+            - button "Mon 8 AM — Average. Apply to queue." [ref=f4e107]
+            - button "Mon 9 AM — Peak engagement. Apply to queue." [ref=f4e108]
+            - button "Mon 10 AM — Peak engagement. Apply to queue." [ref=f4e109]
+            - button "Mon 11 AM — Low activity. Apply to queue." [ref=f4e110]
+            - button "Mon 12 PM — Low activity. Apply to queue." [ref=f4e111]
+            - button "Mon 1 PM — Good window. Apply to queue." [ref=f4e112]
+            - button "Mon 2 PM — Good window. Apply to queue." [ref=f4e113]
+            - button "Mon 3 PM — Low activity. Apply to queue." [ref=f4e114]
+            - button "Mon 4 PM — Low activity. Apply to queue." [ref=f4e115]
+            - button "Mon 5 PM — Peak engagement. Apply to queue." [ref=f4e116]
+            - button "Mon 6 PM — Peak engagement. Apply to queue." [ref=f4e117]
+            - button "Mon 7 PM — Average. Apply to queue." [ref=f4e118]
+            - button "Mon 8 PM — Average. Apply to queue." [ref=f4e119]
+            - button "Mon 9 PM — Average. Apply to queue." [ref=f4e120]
+            - button "Mon 10 PM — Low activity. Apply to queue." [ref=f4e121]
+            - button "Mon 11 PM — Low activity. Apply to queue." [ref=f4e122]
+          - generic [ref=f4e123]:
+            - generic [ref=f4e124]: Tue
+            - button "Tue 12 AM — Low activity. Apply to queue." [ref=f4e125]
+            - button "Tue 1 AM — Low activity. Apply to queue." [ref=f4e126]
+            - button "Tue 2 AM — Low activity. Apply to queue." [ref=f4e127]
+            - button "Tue 3 AM — Low activity. Apply to queue." [ref=f4e128]
+            - button "Tue 4 AM — Low activity. Apply to queue." [ref=f4e129]
+            - button "Tue 5 AM — Low activity. Apply to queue." [ref=f4e130]
+            - button "Tue 6 AM — Average. Apply to queue." [ref=f4e131]
+            - button "Tue 7 AM — Average. Apply to queue." [ref=f4e132]
+            - button "Tue 8 AM — Average. Apply to queue." [ref=f4e133]
+            - button "Tue 9 AM — Peak engagement. Apply to queue." [ref=f4e134]
+            - button "Tue 10 AM — Peak engagement. Apply to queue." [ref=f4e135]
+            - button "Tue 11 AM — Low activity. Apply to queue." [ref=f4e136]
+            - button "Tue 12 PM — Low activity. Apply to queue." [ref=f4e137]
+            - button "Tue 1 PM — Good window. Apply to queue." [ref=f4e138]
+            - button "Tue 2 PM — Good window. Apply to queue." [ref=f4e139]
+            - button "Tue 3 PM — Low activity. Apply to queue." [ref=f4e140]
+            - button "Tue 4 PM — Low activity. Apply to queue." [ref=f4e141]
+            - button "Tue 5 PM — Peak engagement. Apply to queue." [ref=f4e142]
+            - button "Tue 6 PM — Peak engagement. Apply to queue." [ref=f4e143]
+            - button "Tue 7 PM — Average. Apply to queue." [ref=f4e144]
+            - button "Tue 8 PM — Average. Apply to queue." [ref=f4e145]
+            - button "Tue 9 PM — Average. Apply to queue." [ref=f4e146]
+            - button "Tue 10 PM — Low activity. Apply to queue." [ref=f4e147]
+            - button "Tue 11 PM — Low activity. Apply to queue." [ref=f4e148]
+          - generic [ref=f4e149]:
+            - generic [ref=f4e150]: Wed
+            - button "Wed 12 AM — Low activity. Apply to queue." [ref=f4e151]
+            - button "Wed 1 AM — Low activity. Apply to queue." [ref=f4e152]
+            - button "Wed 2 AM — Low activity. Apply to queue." [ref=f4e153]
+            - button "Wed 3 AM — Low activity. Apply to queue." [ref=f4e154]
+            - button "Wed 4 AM — Low activity. Apply to queue." [ref=f4e155]
+            - button "Wed 5 AM — Low activity. Apply to queue." [ref=f4e156]
+            - button "Wed 6 AM — Average. Apply to queue." [ref=f4e157]
+            - button "Wed 7 AM — Average. Apply to queue." [ref=f4e158]
+            - button "Wed 8 AM — Average. Apply to queue." [ref=f4e159]
+            - button "Wed 9 AM — Peak engagement. Apply to queue." [ref=f4e160]
+            - button "Wed 10 AM — Peak engagement. Apply to queue." [ref=f4e161]
+            - button "Wed 11 AM — Low activity. Apply to queue." [ref=f4e162]
+            - button "Wed 12 PM — Low activity. Apply to queue." [ref=f4e163]
+            - button "Wed 1 PM — Good window. Apply to queue." [ref=f4e164]
+            - button "Wed 2 PM — Good window. Apply to queue." [ref=f4e165]
+            - button "Wed 3 PM — Low activity. Apply to queue." [ref=f4e166]
+            - button "Wed 4 PM — Low activity. Apply to queue." [ref=f4e167]
+            - button "Wed 5 PM — Peak engagement. Apply to queue." [ref=f4e168]
+            - button "Wed 6 PM — Peak engagement. Apply to queue." [ref=f4e169]
+            - button "Wed 7 PM — Average. Apply to queue." [ref=f4e170]
+            - button "Wed 8 PM — Average. Apply to queue." [ref=f4e171]
+            - button "Wed 9 PM — Average. Apply to queue." [ref=f4e172]
+            - button "Wed 10 PM — Low activity. Apply to queue." [ref=f4e173]
+            - button "Wed 11 PM — Low activity. Apply to queue." [ref=f4e174]
+          - generic [ref=f4e175]:
+            - generic [ref=f4e176]: Thu
+            - button "Thu 12 AM — Low activity. Apply to queue." [ref=f4e177]
+            - button "Thu 1 AM — Low activity. Apply to queue." [ref=f4e178]
+            - button "Thu 2 AM — Low activity. Apply to queue." [ref=f4e179]
+            - button "Thu 3 AM — Low activity. Apply to queue." [ref=f4e180]
+            - button "Thu 4 AM — Low activity. Apply to queue." [ref=f4e181]
+            - button "Thu 5 AM — Low activity. Apply to queue." [ref=f4e182]
+            - button "Thu 6 AM — Average. Apply to queue." [ref=f4e183]
+            - button "Thu 7 AM — Average. Apply to queue." [ref=f4e184]
+            - button "Thu 8 AM — Average. Apply to queue." [ref=f4e185]
+            - button "Thu 9 AM — Peak engagement. Apply to queue." [ref=f4e186]
+            - button "Thu 10 AM — Peak engagement. Apply to queue." [ref=f4e187]
+            - button "Thu 11 AM — Low activity. Apply to queue." [ref=f4e188]
+            - button "Thu 12 PM — Low activity. Apply to queue." [ref=f4e189]
+            - button "Thu 1 PM — Good window. Apply to queue." [ref=f4e190]
+            - button "Thu 2 PM — Good window. Apply to queue." [ref=f4e191]
+            - button "Thu 3 PM — Low activity. Apply to queue." [ref=f4e192]
+            - button "Thu 4 PM — Low activity. Apply to queue." [ref=f4e193]
+            - button "Thu 5 PM — Peak engagement. Apply to queue." [ref=f4e194]
+            - button "Thu 6 PM — Peak engagement. Apply to queue." [ref=f4e195]
+            - button "Thu 7 PM — Average. Apply to queue." [ref=f4e196]
+            - button "Thu 8 PM — Average. Apply to queue." [ref=f4e197]
+            - button "Thu 9 PM — Average. Apply to queue." [ref=f4e198]
+            - button "Thu 10 PM — Low activity. Apply to queue." [ref=f4e199]
+            - button "Thu 11 PM — Low activity. Apply to queue." [ref=f4e200]
+          - generic [ref=f4e201]:
+            - generic [ref=f4e202]: Fri
+            - button "Fri 12 AM — Low activity. Apply to queue." [ref=f4e203]
+            - button "Fri 1 AM — Low activity. Apply to queue." [ref=f4e204]
+            - button "Fri 2 AM — Low activity. Apply to queue." [ref=f4e205]
+            - button "Fri 3 AM — Low activity. Apply to queue." [ref=f4e206]
+            - button "Fri 4 AM — Low activity. Apply to queue." [ref=f4e207]
+            - button "Fri 5 AM — Low activity. Apply to queue." [ref=f4e208]
+            - button "Fri 6 AM — Average. Apply to queue." [ref=f4e209]
+            - button "Fri 7 AM — Average. Apply to queue." [ref=f4e210]
+            - button "Fri 8 AM — Average. Apply to queue." [ref=f4e211]
+            - button "Fri 9 AM — Peak engagement. Apply to queue." [ref=f4e212]
+            - button "Fri 10 AM — Peak engagement. Apply to queue." [ref=f4e213]
+            - button "Fri 11 AM — Low activity. Apply to queue." [ref=f4e214]
+            - button "Fri 12 PM — Low activity. Apply to queue." [ref=f4e215]
+            - button "Fri 1 PM — Good window. Apply to queue." [ref=f4e216]
+            - button "Fri 2 PM — Good window. Apply to queue." [ref=f4e217]
+            - button "Fri 3 PM — Low activity. Apply to queue." [ref=f4e218]
+            - button "Fri 4 PM — Low activity. Apply to queue." [ref=f4e219]
+            - button "Fri 5 PM — Peak engagement. Apply to queue." [ref=f4e220]
+            - button "Fri 6 PM — Peak engagement. Apply to queue." [ref=f4e221]
+            - button "Fri 7 PM — Average. Apply to queue." [ref=f4e222]
+            - button "Fri 8 PM — Average. Apply to queue." [ref=f4e223]
+            - button "Fri 9 PM — Average. Apply to queue." [ref=f4e224]
+            - button "Fri 10 PM — Low activity. Apply to queue." [ref=f4e225]
+            - button "Fri 11 PM — Low activity. Apply to queue." [ref=f4e226]
+          - generic [ref=f4e227]:
+            - generic [ref=f4e228]: Sat
+            - button "Sat 12 AM — Low activity. Apply to queue." [ref=f4e229]
+            - button "Sat 1 AM — Low activity. Apply to queue." [ref=f4e230]
+            - button "Sat 2 AM — Low activity. Apply to queue." [ref=f4e231]
+            - button "Sat 3 AM — Low activity. Apply to queue." [ref=f4e232]
+            - button "Sat 4 AM — Low activity. Apply to queue." [ref=f4e233]
+            - button "Sat 5 AM — Low activity. Apply to queue." [ref=f4e234]
+            - button "Sat 6 AM — Average. Apply to queue." [ref=f4e235]
+            - button "Sat 7 AM — Average. Apply to queue." [ref=f4e236]
+            - button "Sat 8 AM — Average. Apply to queue." [ref=f4e237]
+            - button "Sat 9 AM — Average. Apply to queue." [ref=f4e238]
+            - button "Sat 10 AM — Peak engagement. Apply to queue." [ref=f4e239]
+            - button "Sat 11 AM — Peak engagement. Apply to queue." [ref=f4e240]
+            - button "Sat 12 PM — Peak engagement. Apply to queue." [ref=f4e241]
+            - button "Sat 1 PM — Good window. Apply to queue." [ref=f4e242]
+            - button "Sat 2 PM — Good window. Apply to queue." [ref=f4e243]
+            - button "Sat 3 PM — Good window. Apply to queue." [ref=f4e244]
+            - button "Sat 4 PM — Average. Apply to queue." [ref=f4e245]
+            - button "Sat 5 PM — Average. Apply to queue." [ref=f4e246]
+            - button "Sat 6 PM — Average. Apply to queue." [ref=f4e247]
+            - button "Sat 7 PM — Average. Apply to queue." [ref=f4e248]
+            - button "Sat 8 PM — Average. Apply to queue." [ref=f4e249]
+            - button "Sat 9 PM — Average. Apply to queue." [ref=f4e250]
+            - button "Sat 10 PM — Average. Apply to queue." [ref=f4e251]
+            - button "Sat 11 PM — Average. Apply to queue." [ref=f4e252]
+          - generic [ref=f4e253]:
+            - generic [ref=f4e254]: Sun
+            - button "Sun 12 AM — Low activity. Apply to queue." [ref=f4e255]
+            - button "Sun 1 AM — Low activity. Apply to queue." [ref=f4e256]
+            - button "Sun 2 AM — Low activity. Apply to queue." [ref=f4e257]
+            - button "Sun 3 AM — Low activity. Apply to queue." [ref=f4e258]
+            - button "Sun 4 AM — Low activity. Apply to queue." [ref=f4e259]
+            - button "Sun 5 AM — Low activity. Apply to queue." [ref=f4e260]
+            - button "Sun 6 AM — Average. Apply to queue." [ref=f4e261]
+            - button "Sun 7 AM — Average. Apply to queue." [ref=f4e262]
+            - button "Sun 8 AM — Average. Apply to queue." [ref=f4e263]
+            - button "Sun 9 AM — Average. Apply to queue." [ref=f4e264]
+            - button "Sun 10 AM — Peak engagement. Apply to queue." [ref=f4e265]
+            - button "Sun 11 AM — Peak engagement. Apply to queue." [ref=f4e266]
+            - button "Sun 12 PM — Peak engagement. Apply to queue." [ref=f4e267]
+            - button "Sun 1 PM — Good window. Apply to queue." [ref=f4e268]
+            - button "Sun 2 PM — Good window. Apply to queue." [ref=f4e269]
+            - button "Sun 3 PM — Good window. Apply to queue." [ref=f4e270]
+            - button "Sun 4 PM — Average. Apply to queue." [ref=f4e271]
+            - button "Sun 5 PM — Average. Apply to queue." [ref=f4e272]
+            - button "Sun 6 PM — Average. Apply to queue." [ref=f4e273]
+            - button "Sun 7 PM — Average. Apply to queue." [ref=f4e274]
+            - button "Sun 8 PM — Average. Apply to queue." [ref=f4e275]
+            - button "Sun 9 PM — Average. Apply to queue." [ref=f4e276]
+            - button "Sun 10 PM — Average. Apply to queue." [ref=f4e277]
+            - button "Sun 11 PM — Average. Apply to queue." [ref=f4e278]
+      - generic [ref=f4e279]: Research for your niche
+      - generic [ref=f4e282]:
+        - textbox "Your niche or topic" [ref=f4e283]:
+          - /placeholder: Your niche or topic…
+          - text: AI tools and tech
+        - textbox "Timezone" [ref=f4e284]: IST
+        - button "Get Times" [ref=f4e286]
+      - generic [ref=f4e291]:
+        - paragraph [ref=f4e296]: Enter your niche for research-backed windows layered on top of the general pattern above.
+        - generic [ref=f4e297]:
+          - button "AI tools and tech" [ref=f4e298]
+          - button "Personal finance" [ref=f4e299]
+          - button "Fitness" [ref=f4e300]
+          - button "Indie games" [ref=f4e301]
+  - button "Open Next.js Dev Tools" [ref=f4e307] [cursor=pointer]

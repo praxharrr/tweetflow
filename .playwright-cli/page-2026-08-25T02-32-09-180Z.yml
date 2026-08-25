@@ -1,0 +1,295 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]: Tweetflow
+    - generic [ref=e7]:
+      - generic [ref=e8]: Navigation
+      - navigation [ref=e9]:
+        - link "Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=e36]:
+      - generic [ref=e37]: AI Tools
+      - navigation [ref=e38]:
+        - link "Trending Topics" [ref=e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=e50]:
+      - generic [ref=e51]: Account
+      - navigation [ref=e52]:
+        - link "Settings" [ref=e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=e57]:
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - heading "Calendar" [level=1] [ref=e62]
+          - paragraph [ref=e63]: Click an empty slot to schedule, drag a tweet to reschedule.
+        - generic [ref=e64]:
+          - link "Week" [ref=e65] [cursor=pointer]:
+            - /url: /calendar?view=week
+          - link "Month" [ref=e66] [cursor=pointer]:
+            - /url: /calendar?view=month
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e69]: 24 Aug – 30 Aug 2026
+          - generic [ref=e73]:
+            - link [ref=e74] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-17
+            - link [ref=e77] [cursor=pointer]:
+              - /url: /calendar?view=week&week=2026-08-31
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - generic [ref=e84]:
+              - generic [ref=e85]: Mon
+              - generic [ref=e86]: "24"
+            - generic [ref=e87]:
+              - generic [ref=e88]: Tue
+              - generic [ref=e89]: "25"
+            - generic [ref=e90]:
+              - generic [ref=e91]: Wed
+              - generic [ref=e92]: "26"
+            - generic [ref=e93]:
+              - generic [ref=e94]: Thu
+              - generic [ref=e95]: "27"
+            - generic [ref=e96]:
+              - generic [ref=e97]: Fri
+              - generic [ref=e98]: "28"
+            - generic [ref=e99]:
+              - generic [ref=e100]: Sat
+              - generic [ref=e101]: "29"
+            - generic [ref=e102]:
+              - generic [ref=e103]: Sun
+              - generic [ref=e104]: "30"
+          - generic [ref=e105]:
+            - generic [ref=e106]:
+              - generic [ref=e107]: 12 AM
+              - button "Schedule a tweet for Monday, 24 August at 12 AM" [ref=e108] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 12 AM" [ref=e110] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 12 AM" [ref=e112] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 12 AM" [ref=e114] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 12 AM" [ref=e116] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 12 AM" [ref=e118] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 12 AM" [ref=e120] [cursor=pointer]
+            - generic [ref=e122]:
+              - generic [ref=e123]: 1 AM
+              - button "Schedule a tweet for Monday, 24 August at 1 AM" [ref=e124] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 1 AM" [ref=e126] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 1 AM" [ref=e128] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 1 AM" [ref=e130] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 1 AM" [ref=e132] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 1 AM" [ref=e134] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 1 AM" [ref=e136] [cursor=pointer]
+            - generic [ref=e138]:
+              - generic [ref=e139]: 2 AM
+              - button "Schedule a tweet for Monday, 24 August at 2 AM" [ref=e140] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 2 AM" [ref=e142] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 2 AM" [ref=e144] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 2 AM" [ref=e146] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 2 AM" [ref=e148] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 2 AM" [ref=e150] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 2 AM" [ref=e152] [cursor=pointer]
+            - generic [ref=e154]:
+              - generic [ref=e155]: 3 AM
+              - button "Schedule a tweet for Monday, 24 August at 3 AM" [ref=e156] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 3 AM" [ref=e158] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 3 AM" [ref=e160] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 3 AM" [ref=e162] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 3 AM" [ref=e164] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 3 AM" [ref=e166] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 3 AM" [ref=e168] [cursor=pointer]
+            - generic [ref=e170]:
+              - generic [ref=e171]: 4 AM
+              - button "Schedule a tweet for Monday, 24 August at 4 AM" [ref=e172] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 4 AM" [ref=e174] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 4 AM" [ref=e176] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 4 AM" [ref=e178] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 4 AM" [ref=e180] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 4 AM" [ref=e182] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 4 AM" [ref=e184] [cursor=pointer]
+            - generic [ref=e186]:
+              - generic [ref=e187]: 5 AM
+              - button "Schedule a tweet for Monday, 24 August at 5 AM" [ref=e188] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 5 AM" [ref=e190] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 5 AM" [ref=e192] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 5 AM" [ref=e194] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 5 AM" [ref=e196] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 5 AM" [ref=e198] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 5 AM" [ref=e200] [cursor=pointer]
+            - generic [ref=e202]:
+              - generic [ref=e203]: 6 AM
+              - button "Schedule a tweet for Monday, 24 August at 6 AM" [ref=e204] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 6 AM" [ref=e206] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 6 AM" [ref=e208] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 6 AM" [ref=e210] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 6 AM" [ref=e212] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 6 AM" [ref=e214] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 6 AM" [ref=e216] [cursor=pointer]
+            - generic [ref=e218]:
+              - generic [ref=e219]: 7 AM
+              - button "Schedule a tweet for Monday, 24 August at 7 AM" [ref=e220] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 7 AM" [ref=e222] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 7 AM" [ref=e224] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 7 AM" [ref=e226] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 7 AM" [ref=e228] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 7 AM" [ref=e230] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 7 AM" [ref=e232] [cursor=pointer]
+            - generic [ref=e234]:
+              - generic [ref=e235]: 8 AM
+              - button "Schedule a tweet for Monday, 24 August at 8 AM" [ref=e236] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 8 AM" [ref=e238] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 8 AM" [ref=e240] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 8 AM" [ref=e242] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 8 AM" [ref=e244] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 8 AM" [ref=e246] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 8 AM" [ref=e248] [cursor=pointer]
+            - generic [ref=e250]:
+              - generic [ref=e251]: 9 AM
+              - button "Schedule a tweet for Monday, 24 August at 9 AM" [ref=e252] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 9 AM" [ref=e254] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 9 AM" [ref=e256] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 9 AM" [ref=e258] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 9 AM" [ref=e260] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 9 AM" [ref=e262] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 9 AM" [ref=e264] [cursor=pointer]
+            - generic [ref=e266]:
+              - generic [ref=e267]: 10 AM
+              - button "Schedule a tweet for Monday, 24 August at 10 AM" [ref=e268] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 10 AM" [ref=e270] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 10 AM" [ref=e272] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 10 AM" [ref=e274] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 10 AM" [ref=e276] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 10 AM" [ref=e278] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 10 AM" [ref=e280] [cursor=pointer]
+            - generic [ref=e282]:
+              - generic [ref=e283]: 11 AM
+              - button "Schedule a tweet for Monday, 24 August at 11 AM" [ref=e284] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 11 AM" [ref=e286] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 11 AM" [ref=e288] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 11 AM" [ref=e290] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 11 AM" [ref=e292] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 11 AM" [ref=e294] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 11 AM" [ref=e296] [cursor=pointer]
+            - generic [ref=e298]:
+              - generic [ref=e299]: 12 PM
+              - button "Schedule a tweet for Monday, 24 August at 12 PM" [ref=e300] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 12 PM" [ref=e302] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 12 PM" [ref=e304] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 12 PM" [ref=e306] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 12 PM" [ref=e308] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 12 PM" [ref=e310] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 12 PM" [ref=e312] [cursor=pointer]
+            - generic [ref=e314]:
+              - generic [ref=e315]: 1 PM
+              - button "Schedule a tweet for Monday, 24 August at 1 PM" [ref=e316] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 1 PM" [ref=e318] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 1 PM" [ref=e320] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 1 PM" [ref=e322] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 1 PM" [ref=e324] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 1 PM" [ref=e326] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 1 PM" [ref=e328] [cursor=pointer]
+            - generic [ref=e330]:
+              - generic [ref=e331]: 2 PM
+              - button "Schedule a tweet for Monday, 24 August at 2 PM" [ref=e332] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 2 PM" [ref=e334] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 2 PM" [ref=e336] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 2 PM" [ref=e338] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 2 PM" [ref=e340] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 2 PM" [ref=e342] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 2 PM" [ref=e344] [cursor=pointer]
+            - generic [ref=e346]:
+              - generic [ref=e347]: 3 PM
+              - button "Schedule a tweet for Monday, 24 August at 3 PM" [ref=e348] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 3 PM" [ref=e350] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 3 PM" [ref=e352] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 3 PM" [ref=e354] [cursor=pointer]
+              - generic "Rumor has it he's fed up with the EU's battery regulations that could delay Tesla's new Model 3 rollouts. A $100k battery price hike would hit margins hard. Musk's anger? A warning to regulators." [ref=e357] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 3 PM" [ref=e358] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 3 PM" [ref=e360] [cursor=pointer]
+            - generic [ref=e362]:
+              - generic [ref=e363]: 4 PM
+              - button "Schedule a tweet for Monday, 24 August at 4 PM" [ref=e364] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 4 PM" [ref=e366] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 4 PM" [ref=e368] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 4 PM" [ref=e370] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 4 PM" [ref=e372] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 4 PM" [ref=e374] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 4 PM" [ref=e376] [cursor=pointer]
+            - generic [ref=e378]:
+              - generic [ref=e379]: 5 PM
+              - button "Schedule a tweet for Monday, 24 August at 5 PM" [ref=e380] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 5 PM" [ref=e382] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 5 PM" [ref=e384] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 5 PM" [ref=e386] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 5 PM" [ref=e388] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 5 PM" [ref=e390] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 5 PM" [ref=e392] [cursor=pointer]
+            - generic [ref=e394]:
+              - generic [ref=e395]: 6 PM
+              - button "Schedule a tweet for Monday, 24 August at 6 PM" [ref=e396] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 6 PM" [ref=e398] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 6 PM" [ref=e400] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 6 PM" [ref=e402] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 6 PM" [ref=e404] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 6 PM" [ref=e406] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 6 PM" [ref=e408] [cursor=pointer]
+            - generic [ref=e410]:
+              - generic [ref=e411]: 7 PM
+              - generic [ref=e412] [cursor=pointer]:
+                - 'generic "Just saw Elon Musk''s latest tweet: ''I''m mad.'' No context, no explanation, just a single emoji. It got everyone scrambling. Let''s dig into what''s driving the billionaire''s fury." [ref=e413]'
+                - generic "But it's not just EU policy. He's also frustrated with the Starship launch schedule. The 2024 launch window is slipping, and he's publicly threatened to skip the 'SpaceX is a startup' narrative." [ref=e414]
+                - generic "And then there's the Twitter acquisition fallout. Musk's been dealing with layoffs, policy changes, and a backlash that feels like a personal attack. The 'mad' tweet could be a response to that media storm." [ref=e415]
+              - button "Schedule a tweet for Tuesday, 25 August at 7 PM" [ref=e416] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 7 PM" [ref=e418] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 7 PM" [ref=e420] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 7 PM" [ref=e422] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 7 PM" [ref=e424] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 7 PM" [ref=e426] [cursor=pointer]
+            - generic [ref=e428]:
+              - generic [ref=e429]: 8 PM
+              - button "Schedule a tweet for Monday, 24 August at 8 PM" [ref=e430] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 8 PM" [ref=e432] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 8 PM" [ref=e434] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 8 PM" [ref=e436] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 8 PM" [ref=e438] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 8 PM" [ref=e440] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 8 PM" [ref=e442] [cursor=pointer]
+            - generic [ref=e444]:
+              - generic [ref=e445]: 9 PM
+              - button "Schedule a tweet for Monday, 24 August at 9 PM" [ref=e446] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 9 PM" [ref=e448] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 9 PM" [ref=e450] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 9 PM" [ref=e452] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 9 PM" [ref=e454] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 9 PM" [ref=e456] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 9 PM" [ref=e458] [cursor=pointer]
+            - generic [ref=e460]:
+              - generic [ref=e461]: 10 PM
+              - button "Schedule a tweet for Monday, 24 August at 10 PM" [ref=e462] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 10 PM" [ref=e464] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 10 PM" [ref=e466] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 10 PM" [ref=e468] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 10 PM" [ref=e470] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 10 PM" [ref=e472] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 10 PM" [ref=e474] [cursor=pointer]
+            - generic [ref=e476]:
+              - generic [ref=e477]: 11 PM
+              - button "Schedule a tweet for Monday, 24 August at 11 PM" [ref=e478] [cursor=pointer]
+              - button "Schedule a tweet for Tuesday, 25 August at 11 PM" [ref=e480] [cursor=pointer]
+              - button "Schedule a tweet for Wednesday, 26 August at 11 PM" [ref=e482] [cursor=pointer]
+              - button "Schedule a tweet for Thursday, 27 August at 11 PM" [ref=e484] [cursor=pointer]
+              - button "Schedule a tweet for Friday, 28 August at 11 PM" [ref=e486] [cursor=pointer]
+              - button "Schedule a tweet for Saturday, 29 August at 11 PM" [ref=e488] [cursor=pointer]
+              - button "Schedule a tweet for Sunday, 30 August at 11 PM" [ref=e490] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=e497] [cursor=pointer]

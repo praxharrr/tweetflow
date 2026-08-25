@@ -1,0 +1,76 @@
+- generic [active] [ref=f3e1]:
+  - complementary [ref=f3e2]:
+    - generic [ref=f3e3]: Tweetflow
+    - generic [ref=f3e7]:
+      - generic [ref=f3e8]: Navigation
+      - navigation [ref=f3e9]:
+        - link "Dashboard" [ref=f3e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=f3e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=f3e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=f3e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=f3e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=f3e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=f3e36]:
+      - generic [ref=f3e37]: AI Tools
+      - navigation [ref=f3e38]:
+        - link "Trending Topics" [ref=f3e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=f3e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=f3e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=f3e50]:
+      - generic [ref=f3e51]: Account
+      - navigation [ref=f3e52]:
+        - link "Settings" [ref=f3e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=f3e57]:
+    - generic [ref=f3e59]:
+      - generic [ref=f3e61]:
+        - heading "Drafts" [level=1] [ref=f3e62]
+        - paragraph [ref=f3e63]: 4 saved drafts
+      - textbox "Search drafts..." [ref=f3e65]
+      - generic [ref=f3e66]:
+        - generic [ref=f3e67]:
+          - paragraph [ref=f3e68]: Testing the new monochrome composer end to end.
+          - generic [ref=f3e69]:
+            - generic [ref=f3e70]: 25 Aug
+            - generic [ref=f3e71]: 47 chars
+          - generic [ref=f3e72]:
+            - button "Edit" [ref=f3e73]
+            - button "Schedule" [ref=f3e77]
+            - button "Delete draft" [ref=f3e82]
+        - generic [ref=f3e86]:
+          - paragraph [ref=f3e87]: "Bottom line: Elon Musk's 'mad' tweet is a call to action, a warning, and a reminder that even billionaires have limits. His next move will likely be a public statement or a policy shift—watch this space."
+          - generic [ref=f3e88]:
+            - generic [ref=f3e89]: 24 Aug
+            - generic [ref=f3e90]: 203 chars
+          - generic [ref=f3e91]:
+            - button "Edit" [ref=f3e92]
+            - button "Schedule" [ref=f3e96]
+            - button "Delete draft" [ref=f3e101]
+        - generic [ref=f3e105]:
+          - paragraph [ref=f3e106]: Just toured VIT Bhopal – a campus that's redefining engineering education with state‑of‑the‑art labs, vibrant student culture, and a commitment to sustainability. If you're chasing innovation, this is the place.
+          - generic [ref=f3e107]:
+            - generic [ref=f3e108]: 24 Aug
+            - generic [ref=f3e109]: 211 chars
+          - generic [ref=f3e110]:
+            - button "Edit" [ref=f3e111]
+            - button "Schedule" [ref=f3e115]
+            - button "Delete draft" [ref=f3e120]
+        - generic [ref=f3e124]:
+          - paragraph [ref=f3e125]: Drugs promise escape, but deliver a cage. Every pill is a gamble with your future. Choose knowledge, not the illusion. Stay strong, stay informed.
+          - generic [ref=f3e126]:
+            - generic [ref=f3e127]: 24 Aug
+            - generic [ref=f3e128]: 146 chars
+          - generic [ref=f3e129]:
+            - button "Edit" [ref=f3e130]
+            - button "Schedule" [ref=f3e134]
+            - button "Delete draft" [ref=f3e139]
+  - button "Open Next.js Dev Tools" [ref=f3e148] [cursor=pointer]

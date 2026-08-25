@@ -1,0 +1,126 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]: Tweetflow
+    - button "Search ⌘K" [ref=e7]:
+      - generic [ref=e8]: Search
+      - generic [ref=e12]: ⌘K
+    - generic [ref=e13]:
+      - generic [ref=e14]: Navigation
+      - navigation [ref=e15]:
+        - link "Dashboard" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=e22] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=e26] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=e30] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=e35] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=e39] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=e42]:
+      - generic [ref=e43]: AI Tools
+      - navigation [ref=e44]:
+        - link "Trending Topics" [ref=e45] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=e49] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=e52] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=e56]:
+      - generic [ref=e57]: Account
+      - navigation [ref=e58]:
+        - link "Settings" [ref=e59] [cursor=pointer]:
+          - /url: /settings
+    - generic [ref=e63]: 1-day posting streak
+  - main [ref=e67]:
+    - generic [ref=e226]:
+      - generic [ref=e228]:
+        - heading "Queue" [level=1] [ref=e229]
+        - paragraph [ref=e230]: 4 tweets scheduled
+      - generic [ref=e232]:
+        - generic [ref=e234]:
+          - generic [ref=e235]:
+            - generic [ref=e236]: Mon, 24 Aug
+            - generic [ref=e237]:
+              - generic [ref=e241]:
+                - generic [ref=e243]:
+                  - paragraph [ref=e244]: "Just saw Elon Musk's latest tweet: 'I'm mad.' No context, no explanation, just a single emoji. It got everyone scrambling. Let's dig into what's driving the billionaire's fury."
+                  - generic [ref=e245]:
+                    - generic [ref=e246]: 07:12 pm
+                    - generic [ref=e247]: overdue by 13h
+                - generic [ref=e248]:
+                  - button "Edit" [ref=e249]
+                  - button "Reschedule" [ref=e253]
+                  - button "Unschedule" [ref=e258]
+                  - button "Delete post" [ref=e270]
+              - generic [ref=e276]:
+                - generic [ref=e278]:
+                  - paragraph [ref=e279]: But it's not just EU policy. He's also frustrated with the Starship launch schedule. The 2024 launch window is slipping, and he's publicly threatened to skip the 'SpaceX is a startup' narrative.
+                  - generic [ref=e280]:
+                    - generic [ref=e281]: 07:12 pm
+                    - generic [ref=e282]: overdue by 13h
+                - generic [ref=e283]:
+                  - button "Edit" [ref=e284]
+                  - button "Reschedule" [ref=e288]
+                  - button "Unschedule" [ref=e293]
+                  - button "Delete post" [ref=e305]
+              - generic [ref=e311]:
+                - generic [ref=e313]:
+                  - paragraph [ref=e314]: And then there's the Twitter acquisition fallout. Musk's been dealing with layoffs, policy changes, and a backlash that feels like a personal attack. The 'mad' tweet could be a response to that media storm.
+                  - generic [ref=e315]:
+                    - generic [ref=e316]: 07:12 pm
+                    - generic [ref=e317]: overdue by 13h
+                - generic [ref=e318]:
+                  - button "Edit" [ref=e319]
+                  - button "Reschedule" [ref=e323]
+                  - button "Unschedule" [ref=e328]
+                  - button "Delete post" [ref=e340]
+          - generic [ref=e344]:
+            - generic [ref=e345]: Fri, 28 Aug
+            - generic [ref=e350]:
+              - generic [ref=e352]:
+                - paragraph [ref=e353]: Rumor has it he's fed up with the EU's battery regulations that could delay Tesla's new Model 3 rollouts. A $100k battery price hike would hit margins hard. Musk's anger? A warning to regulators.
+                - generic [ref=e354]:
+                  - generic [ref=e355]: 03:30 pm
+                  - generic [ref=e356]: posts in 3d 6h
+              - generic [ref=e357]:
+                - button "Edit" [ref=e358]
+                - button "Reschedule" [ref=e362]
+                - button "Unschedule" [ref=e367]
+                - button "Delete post" [ref=e379]
+        - generic [ref=e384]:
+          - text: Next 7 days
+          - generic [ref=e385]:
+            - generic [ref=e386]:
+              - generic:
+                - generic "0 tweets"
+              - generic [ref=e387]: Today
+            - generic [ref=e388]:
+              - generic:
+                - generic "0 tweets"
+              - generic [ref=e389]: W
+            - generic [ref=e390]:
+              - generic:
+                - generic "0 tweets"
+              - generic [ref=e391]: T
+            - generic [ref=e392]:
+              - generic:
+                - generic "1 tweet"
+              - generic [ref=e393]: F
+            - generic [ref=e394]:
+              - generic:
+                - generic "0 tweets"
+              - generic [ref=e395]: S
+            - generic [ref=e396]:
+              - generic:
+                - generic "0 tweets"
+              - generic [ref=e397]: S
+            - generic [ref=e398]:
+              - generic:
+                - generic "0 tweets"
+              - generic [ref=e399]: M
+          - paragraph [ref=e400]: 1 scheduled across the next 7 days.
+  - button "Open Next.js Dev Tools" [ref=e149] [cursor=pointer]
+  - alert [ref=e224]: Queue

@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
-import { FileText } from "lucide-react";
 import Link from "next/link";
+import PageHeader from "@/components/ui/PageHeader";
+import DraftsBoard from "@/components/drafts/DraftsBoard";
+import { fieldClass } from "@/components/ui/field-styles";
 
 export default async function DraftsPage({
   searchParams,
@@ -10,59 +12,63 @@ export default async function DraftsPage({
   const params = await searchParams;
   const query = params.q?.trim() ?? "";
 
-  const drafts = await prisma.post.findMany({
-    where: {
-      status: "draft",
-      ...(query ? { content: { contains: query, mode: "insensitive" } } : {}),
-    },
-    orderBy: { updatedAt: "desc" },
-  });
+  const [drafts, account, settings] = await Promise.all([
+    prisma.post.findMany({
+      where: {
+        status: "draft",
+        ...(query ? { content: { contains: query } } : {}),
+      },
+      orderBy: { updatedAt: "desc" },
+    }),
+    prisma.twitterAccount.findFirst(),
+    prisma.settings.upsert({
+      where: { id: "singleton" },
+      create: { id: "singleton" },
+      update: {},
+    }),
+  ]);
+
+  const displayName = settings.displayName || "You";
+  const handle = account?.username ?? displayName.toLowerCase().replace(/\s+/g, "");
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-neutral-900">Drafts</h1>
-      <p className="mt-1 text-sm text-neutral-500">
-        {drafts.length} saved draft{drafts.length !== 1 ? "s" : ""}
-      </p>
+      <PageHeader
+        title="Drafts"
+        subtitle={`${drafts.length} saved draft${drafts.length !== 1 ? "s" : ""}`}
+      />
 
       <form className="mt-4 max-w-md" action="/drafts">
         <input
           type="text"
           name="q"
           defaultValue={query}
-          placeholder="Search drafts..."
-          className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm outline-none focus:border-neutral-400"
+          placeholder="Search drafts…"
+          aria-label="Search drafts"
+          className={fieldClass}
         />
       </form>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {drafts.length === 0 && (
-          <div className="col-span-full flex flex-col items-center justify-center rounded-2xl border border-dashed border-neutral-200 py-16 text-center">
-            <FileText size={28} className="text-neutral-300" />
-            <p className="mt-3 text-sm text-neutral-400">
-              {query ? `No drafts match "${query}".` : "No drafts yet — write one from the New Tweet page."}
-            </p>
-          </div>
-        )}
-
-        {drafts.map((draft) => (
-          <div key={draft.id} className="rounded-2xl border border-neutral-200 bg-white p-4">
-            <p className="line-clamp-4 text-sm text-neutral-800">{draft.content}</p>
-            <div className="mt-3 flex items-center justify-between text-xs text-neutral-400">
-              <span>
-                {new Date(draft.updatedAt).toLocaleDateString("en-IN", {
-                  day: "numeric",
-                  month: "short",
-                })}
-              </span>
-              <span>{draft.content.length} chars</span>
-            </div>
-          </div>
-        ))}
+      <div className="mt-6">
+        <DraftsBoard
+          drafts={drafts.map((d) => ({
+            id: d.id,
+            content: d.content,
+            updatedAt: d.updatedAt.toISOString(),
+          }))}
+          displayName={displayName}
+          handle={handle}
+          emptyMessage={
+            query ? `No drafts match "${query}".` : "No drafts yet — write one from the New Tweet page."
+          }
+        />
       </div>
 
       {query && (
-        <Link href="/drafts" className="mt-4 inline-block text-xs text-neutral-400 hover:underline">
+        <Link
+          href="/drafts"
+          className="mt-4 inline-block text-caption text-mono-ink-faint hover:text-mono-ink hover:underline"
+        >
           Clear search
         </Link>
       )}

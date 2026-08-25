@@ -1,0 +1,78 @@
+- generic [active] [ref=f1e1]:
+  - complementary [ref=f1e2]:
+    - generic [ref=f1e3]: Tweetflow
+    - generic [ref=f1e7]:
+      - generic [ref=f1e8]: Navigation
+      - navigation [ref=f1e9]:
+        - link "Dashboard" [ref=f1e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=f1e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=f1e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=f1e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=f1e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=f1e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=f1e36]:
+      - generic [ref=f1e37]: AI Tools
+      - navigation [ref=f1e38]:
+        - link "Trending Topics" [ref=f1e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=f1e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=f1e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=f1e50]:
+      - generic [ref=f1e51]: Account
+      - navigation [ref=f1e52]:
+        - link "Settings" [ref=f1e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=f1e57]:
+    - generic [ref=f1e58]:
+      - generic [ref=f1e59]:
+        - heading "Dashboard" [level=1] [ref=f1e60]
+        - paragraph [ref=f1e61]: Welcome back to Tweetflow.
+      - generic [ref=f1e62]:
+        - generic [ref=f1e64]:
+          - generic [ref=f1e65]: Total Tweets
+          - generic [ref=f1e69]: "7"
+        - generic [ref=f1e74]:
+          - generic [ref=f1e75]: Scheduled Posts
+          - generic [ref=f1e80]: "4"
+        - generic [ref=f1e84]:
+          - generic [ref=f1e85]: Engagement Forecast
+          - generic [ref=f1e90]:
+            - paragraph [ref=f1e91]: Connect your X account to unlock forecasts.
+            - link "Connect account" [ref=f1e92] [cursor=pointer]:
+              - /url: /settings
+        - generic [ref=f1e93]:
+          - generic [ref=f1e94]: Active Automations
+          - generic [ref=f1e98]:
+            - paragraph [ref=f1e99]: No automations configured yet.
+            - generic [ref=f1e100]: Not available yet
+      - generic [ref=f1e102]:
+        - generic [ref=f1e104]:
+          - heading "Scheduled Tweets Queue" [level=3] [ref=f1e110]
+          - generic [ref=f1e111]:
+            - generic [ref=f1e112]:
+              - paragraph [ref=f1e113]: "Just saw Elon Musk's latest tweet: 'I'm mad.' No context, no explanation, just a single emoji. It got everyone scrambling. Let's dig into what's driving the billionaire's fury."
+              - generic [ref=f1e114]: 24 Aug
+            - generic [ref=f1e115]:
+              - paragraph [ref=f1e116]: Rumor has it he's fed up with the EU's battery regulations that could delay Tesla's new Model 3 rollouts. A $100k battery price hike would hit margins hard. Musk's anger? A warning to regulators.
+              - generic [ref=f1e117]: 24 Aug
+            - generic [ref=f1e118]:
+              - paragraph [ref=f1e119]: But it's not just EU policy. He's also frustrated with the Starship launch schedule. The 2024 launch window is slipping, and he's publicly threatened to skip the 'SpaceX is a startup' narrative.
+              - generic [ref=f1e120]: 24 Aug
+            - generic [ref=f1e121]:
+              - paragraph [ref=f1e122]: And then there's the Twitter acquisition fallout. Musk's been dealing with layoffs, policy changes, and a backlash that feels like a personal attack. The 'mad' tweet could be a response to that media storm.
+              - generic [ref=f1e123]: 24 Aug
+        - generic [ref=f1e124]:
+          - heading "Connected Accounts" [level=3] [ref=f1e127]
+          - generic [ref=f1e128]:
+            - paragraph [ref=f1e129]: No X account connected yet.
+            - link "Connect X Account" [ref=f1e130] [cursor=pointer]:
+              - /url: /settings
+  - button "Open Next.js Dev Tools" [ref=f1e136] [cursor=pointer]

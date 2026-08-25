@@ -1,0 +1,117 @@
+- generic [active] [ref=f9e1]:
+  - complementary [ref=f9e2]:
+    - generic [ref=f9e3]: Tweetflow
+    - generic [ref=f9e7]:
+      - generic [ref=f9e8]: Navigation
+      - navigation [ref=f9e9]:
+        - link "Dashboard" [ref=f9e10] [cursor=pointer]:
+          - /url: /
+        - link "New Tweet" [ref=f9e16] [cursor=pointer]:
+          - /url: /compose
+        - link "Threads" [ref=f9e20] [cursor=pointer]:
+          - /url: /threads
+        - link "Drafts" [ref=f9e24] [cursor=pointer]:
+          - /url: /drafts
+        - link "Queue" [ref=f9e29] [cursor=pointer]:
+          - /url: /queue
+        - link "Calendar" [ref=f9e33] [cursor=pointer]:
+          - /url: /calendar
+    - generic [ref=f9e36]:
+      - generic [ref=f9e37]: AI Tools
+      - navigation [ref=f9e38]:
+        - link "Trending Topics" [ref=f9e39] [cursor=pointer]:
+          - /url: /trending-topics
+        - link "Viral Opportunities" [ref=f9e43] [cursor=pointer]:
+          - /url: /viral-opportunities
+        - link "Best Posting Times" [ref=f9e46] [cursor=pointer]:
+          - /url: /best-posting-times
+    - generic [ref=f9e50]:
+      - generic [ref=f9e51]: Account
+      - navigation [ref=f9e52]:
+        - link "Settings" [ref=f9e53] [cursor=pointer]:
+          - /url: /settings
+  - main [ref=f9e57]:
+    - generic [ref=f9e59]:
+      - generic [ref=f9e61]:
+        - heading "Settings" [level=1] [ref=f9e62]
+        - paragraph [ref=f9e63]: Manage your connected accounts and workspace.
+      - generic [ref=f9e64]:
+        - generic [ref=f9e65]:
+          - heading "Connected Accounts" [level=2] [ref=f9e66]
+          - paragraph [ref=f9e67]: Tweetflow posts to X on your behalf using this connection.
+          - generic [ref=f9e69]:
+            - link "Connect X Account" [ref=f9e71] [cursor=pointer]:
+              - /url: /api/auth/twitter/connect
+            - paragraph [ref=f9e72]: Not connected yet — publishing stays disabled until you connect.
+            - generic [ref=f9e73]:
+              - text: What connecting unlocks
+              - list [ref=f9e74]:
+                - listitem [ref=f9e75]: Publish tweets and threads directly, on schedule
+                - listitem [ref=f9e78]: See your real handle and avatar in every preview
+                - listitem [ref=f9e81]: Auto-post from Queue instead of manual copy-paste
+            - generic [ref=f9e84]:
+              - text: Permissions requested
+              - list [ref=f9e85]:
+                - listitem [ref=f9e86]:
+                  - generic [ref=f9e90]: Read your profile info (name, handle, avatar)users.read
+                - listitem [ref=f9e91]:
+                  - generic [ref=f9e95]: Read your tweetstweet.read
+                - listitem [ref=f9e96]:
+                  - generic [ref=f9e100]: Post and schedule tweets on your behalftweet.write
+                - listitem [ref=f9e101]:
+                  - generic [ref=f9e105]: Stay connected between sessionsoffline.access
+            - generic [ref=f9e106]:
+              - text: Preview once connected
+              - generic [ref=f9e107]:
+                - generic [ref=f9e108]: "@yourhandle"
+                - generic [ref=f9e113]: Disconnect
+        - generic [ref=f9e117]:
+          - heading "Preferences" [level=2] [ref=f9e118]
+          - paragraph [ref=f9e119]: Applied across composing, threads, and AI generation.
+          - generic [ref=f9e121]:
+            - status [ref=f9e122]: Preferences saved
+            - generic [ref=f9e123]:
+              - text: Workspace name
+              - textbox "Workspace name" [ref=f9e124]: Tweetflow
+            - generic [ref=f9e125]:
+              - text: Timezone
+              - textbox "Timezone" [ref=f9e126]:
+                - /placeholder: e.g. Asia/Kolkata
+                - text: Asia/Kolkata
+            - generic [ref=f9e127]:
+              - text: Default AI tone
+              - paragraph [ref=f9e128]: Applied to every AI-generated tweet and thread.
+              - generic [ref=f9e129]:
+                - button "Direct" [ref=f9e130]
+                - button "Casual" [ref=f9e131]
+                - button "Professional" [ref=f9e132]
+                - button "Bold" [ref=f9e133]
+            - generic [ref=f9e134]:
+              - generic [ref=f9e135]:
+                - paragraph [ref=f9e136]: Auto-number threads
+                - paragraph [ref=f9e137]: Prefixes each tweet with “n/total”.
+              - switch "Auto-number threads" [checked] [ref=f9e138]
+            - generic [ref=f9e140]:
+              - button "Save preferences" [ref=f9e185]
+              - generic [ref=f9e186]: Preferences saved
+      - generic [ref=f9e144]:
+        - heading "Danger Zone" [level=2] [ref=f9e145]
+        - paragraph [ref=f9e146]: Destructive actions — each one is permanent.
+        - generic [ref=f9e147]:
+          - generic [ref=f9e148]:
+            - generic [ref=f9e149]:
+              - paragraph [ref=f9e150]: Export all data
+              - paragraph [ref=f9e151]: Download every post, thread, and preference as JSON.
+            - button "Export" [ref=f9e152]
+          - generic [ref=f9e156]:
+            - generic [ref=f9e157]:
+              - paragraph [ref=f9e158]: Clear all drafts
+              - paragraph [ref=f9e159]: Deletes every saved draft. Scheduled tweets are untouched.
+            - button "Clear drafts" [ref=f9e160]
+          - generic [ref=f9e164]:
+            - generic [ref=f9e165]:
+              - paragraph [ref=f9e166]: Reset workspace
+              - paragraph [ref=f9e167]: Deletes all posts and restores preferences to defaults.
+            - button "Reset" [ref=f9e168]
+  - button "Open Next.js Dev Tools" [ref=f9e177] [cursor=pointer]
+  - alert [ref=f9e189]
