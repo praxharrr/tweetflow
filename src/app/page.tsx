@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ActivityChart from "@/components/dashboard/ActivityChart";
 import TweetBreakdown from "@/components/dashboard/TweetBreakdown";
+import { dayLabel, formatCountdown } from "@/lib/formatCountdown";
 import {
   MessageSquare,
   Clock,
@@ -40,7 +41,7 @@ export default async function Home() {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
   sevenDaysAgo.setHours(0, 0, 0, 0);
 
-   const [
+  const [
     totalTweets,
     draftCount,
     publishedCount,
@@ -207,65 +208,98 @@ export default async function Home() {
         delay={0.12}
       >
         <div className="lg:col-span-2">
-          <Panel title="Scheduled Tweets Queue" icon={Clock}>
+          <Panel
+            title="Scheduled Tweets Queue"
+            icon={Clock}
+            action={
+              <Link
+                href="/queue"
+                className="text-caption font-medium text-mono-ink-subtle transition-colors hover:text-primary"
+              >
+                View all →
+              </Link>
+            }
+          >
             {scheduledPosts.length === 0 ? (
-              <div className="flex flex-col items-center gap-3 py-6 text-center">
+              <div className="flex flex-col items-center gap-3 py-8 text-center">
                 <p className="text-body-sm text-mono-ink-subtle">
                   Nothing scheduled yet. Queue up your first tweet.
                 </p>
                 <Magnetic>
                   <Link
                     href="/compose"
-                    className="rounded-full border border-mono-hairline-strong px-3 py-1.5 text-caption font-medium text-mono-ink transition-colors duration-150 hover:bg-white/[0.06]"
+                    className="rounded-xl bg-gradient-to-b from-[#3aa8f2] to-[#1a8cd8] px-4 py-2 text-caption font-semibold text-white shadow-[0_4px_16px_-4px_rgba(29,155,240,0.5)] ring-1 ring-inset ring-white/20 transition-all duration-150 hover:from-[#4db5f5] hover:to-[#1d9bf0] active:scale-[0.98]"
                   >
                     New Tweet
                   </Link>
                 </Magnetic>
               </div>
             ) : (
-              <div className="flex flex-col gap-2">
-                {scheduledPosts.map((post) => (
-                  <div
-                    key={post.id}
-                    className="flex items-center justify-between rounded-md border border-mono-hairline px-3 py-2"
-                  >
-                    <p className="line-clamp-1 text-body-sm text-mono-ink-soft">
-                      {post.content}
-                    </p>
-                    <span className="shrink-0 font-mono text-caption text-mono-ink-faint">
-                      {post.scheduledFor
-                        ? new Date(post.scheduledFor).toLocaleDateString(
-                            "en-IN",
-                            {
-                              day: "numeric",
-                              month: "short",
-                            },
-                          )
-                        : ""}
-                    </span>
-                  </div>
-                ))}
+              <div className="flex flex-col divide-y divide-white/[0.05]">
+                {scheduledPosts.map((post) => {
+                  const target = post.scheduledFor
+                    ? new Date(post.scheduledFor)
+                    : null;
+                  const now = new Date();
+                  const isOverdue = target ? target < now : false;
+                  return (
+                    <Link
+                      key={post.id}
+                      href="/queue"
+                      className="group flex items-center gap-3 py-2.5 first:pt-0 last:pb-0"
+                    >
+                      <span
+                        className={`h-1.5 w-1.5 shrink-0 rounded-full ${
+                          isOverdue ? "bg-warning" : "bg-primary"
+                        }`}
+                      />
+                      <p className="line-clamp-1 flex-1 text-body-sm text-mono-ink-soft transition-colors group-hover:text-mono-ink">
+                        {post.content}
+                      </p>
+                      <div className="shrink-0 text-right">
+                        <div className="text-caption text-mono-ink-faint">
+                          {target ? dayLabel(target, now) : ""}
+                        </div>
+                        <div
+                          className={`font-mono text-[11px] ${
+                            isOverdue ? "text-warning" : "text-mono-ink-faint"
+                          }`}
+                        >
+                          {target ? formatCountdown(target, now) : ""}
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </Panel>
         </div>
-        <Panel title="Connected Accounts">
+
+        <Panel title="Connected Accounts" icon={CheckCircle2}>
           {twitterAccount ? (
-            <div className="flex items-center gap-2 rounded-md border border-mono-hairline-strong bg-mono-surface-2 px-3 py-2">
-              <CheckCircle2 size={16} className="[stroke-width:1.25] text-mono-ink" />
-              <span className="text-body-sm font-medium text-mono-ink">
-                @{twitterAccount.username}
-              </span>
+            <div className="flex items-center gap-3 rounded-xl border border-mono-hairline-strong bg-mono-surface-2 px-3 py-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-[13px] font-semibold text-white">
+                {twitterAccount.username.slice(0, 1).toUpperCase()}
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-body-sm font-medium text-mono-ink">
+                  @{twitterAccount.username}
+                </div>
+                <div className="text-caption text-emerald-400/80">
+                  Connected
+                </div>
+              </div>
             </div>
           ) : (
             <div className="flex flex-col items-start gap-3">
-              <p className="text-body-sm text-mono-ink-subtle">
-                No X account connected yet.
+              <p className="text-body-sm leading-relaxed text-mono-ink-subtle">
+                Connect X to publish scheduled tweets automatically.
               </p>
               <Magnetic className="block w-full">
                 <Link
                   href="/settings"
-                  className="block w-full rounded-full border border-mono-hairline-strong py-2 text-center text-button text-mono-ink transition-colors duration-150 hover:bg-white/[0.06]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-[#3aa8f2] to-[#1a8cd8] py-2.5 text-button font-semibold text-white shadow-[0_4px_16px_-4px_rgba(29,155,240,0.5)] ring-1 ring-inset ring-white/20 transition-all duration-150 hover:from-[#4db5f5] hover:to-[#1d9bf0] active:scale-[0.98]"
                 >
                   Connect X Account
                 </Link>
