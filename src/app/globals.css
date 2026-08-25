@@ -1,30 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand & accent */
-  --color-primary: #5e6ad2;
+  /* Brand & accent — X blue, the single chromatic accent */
+  --color-primary: #1d9bf0;
   --color-on-primary: #ffffff;
-  --color-primary-hover: #828fff;
-  --color-primary-focus: #5e69d1;
-  --color-brand-secure: #7a7fad;
+  --color-primary-hover: #1a8cd8;
+  --color-primary-focus: #1d9bf0;
+  --color-primary-muted: rgb(29 155 240 / 12%);
+  --color-brand-secure: #1d9bf0;
 
   /* Text */
-  --color-ink: #f7f8f8;
-  --color-ink-muted: #d0d6e0;
-  --color-ink-subtle: #8a8f98;
-  --color-ink-tertiary: #62666d;
+  --color-ink: #e7e9ea;
+  --color-ink-muted: #c4c8cc;
+  --color-ink-subtle: #71767b;
+  --color-ink-tertiary: #5b6065;
 
-  /* Surfaces */
-  --color-canvas: #010102;
-  --color-surface-1: #0f1011;
-  --color-surface-2: #141516;
-  --color-surface-3: #18191a;
-  --color-surface-4: #191a1b;
+  /* Surfaces — lifted so cards actually separate from canvas */
+  --color-canvas: #000000;
+  --color-surface-1: #16181c;
+  --color-surface-2: #1c1f23;
+  --color-surface-3: #22262a;
+  --color-surface-4: #262a2e;
 
   /* Borders */
-  --color-hairline: #23252a;
-  --color-hairline-strong: #34343a;
-  --color-hairline-tertiary: #3e3e44;
+  --color-hairline: #2f3336;
+  --color-hairline-strong: #3e4144;
+  --color-hairline-tertiary: #4a4e52;
 
   /* Inverse */
   --color-inverse-canvas: #ffffff;
@@ -33,19 +34,19 @@
   --color-inverse-ink: #000000;
 
   /* Semantic */
-  --color-success: #27a644;
-  --color-danger: #e5484d;
-  --color-warning: #f5a524;
+  --color-success: #00ba7c;
+  --color-danger: #f4212e;
+  --color-warning: #ffd400;
 
-  /* Strict monochrome overlay (sidebar + dashboard) — white-on-black only, no hue */
-  --color-mono-ink: #ffffff;
-  --color-mono-ink-soft: rgb(255 255 255 / 72%);
-  --color-mono-ink-subtle: rgb(255 255 255 / 45%);
-  --color-mono-ink-faint: rgb(255 255 255 / 28%);
-  --color-mono-hairline: rgb(255 255 255 / 10%);
-  --color-mono-hairline-strong: rgb(255 255 255 / 16%);
-  --color-mono-surface: #0a0a0a;
-  --color-mono-surface-2: #121212;
+  /* Primary working palette — used across sidebar, cards, and pages */
+  --color-mono-ink: #e7e9ea;
+  --color-mono-ink-soft: #c4c8cc;
+  --color-mono-ink-subtle: #71767b;
+  --color-mono-ink-faint: #5b6065;
+  --color-mono-hairline: #2f3336;
+  --color-mono-hairline-strong: #3e4144;
+  --color-mono-surface: #16181c;
+  --color-mono-surface-2: #1c1f23;
 
   /* Radii */
   --radius-xs: 4px;
@@ -81,6 +82,12 @@
   --text-headline--line-height: 1.2;
   --text-headline--letter-spacing: -0.6px;
   --text-headline--font-weight: 600;
+
+  /* App page titles — sized for a product screen, not a marketing hero */
+  --text-page-title: 24px;
+  --text-page-title--line-height: 1.25;
+  --text-page-title--letter-spacing: -0.5px;
+  --text-page-title--font-weight: 600;
 
   --text-card-title: 22px;
   --text-card-title--line-height: 1.25;
@@ -130,4 +137,14 @@
 body {
   background: var(--color-canvas);
   color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }

@@ -1,3 +1,6 @@
+import Link from "next/link";
+import ActivityChart from "@/components/dashboard/ActivityChart";
+import TweetBreakdown from "@/components/dashboard/TweetBreakdown";
 import {
   MessageSquare,
   Clock,
@@ -37,8 +40,10 @@ export default async function Home() {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
   sevenDaysAgo.setHours(0, 0, 0, 0);
 
-  const [
+   const [
     totalTweets,
+    draftCount,
+    publishedCount,
     scheduledCount,
     scheduledPosts,
     twitterAccount,
@@ -46,6 +51,8 @@ export default async function Home() {
     recentScheduled,
   ] = await Promise.all([
     prisma.post.count(),
+    prisma.post.count({ where: { status: "draft" } }),
+    prisma.post.count({ where: { status: "published" } }),
     prisma.post.count({ where: { status: "scheduled" } }),
     prisma.post.findMany({
       where: { status: "scheduled" },
@@ -72,37 +79,99 @@ export default async function Home() {
     recentScheduled.map((p) => p.createdAt),
     days,
   );
+  const dayLabels = days.map((d) =>
+    d.toLocaleDateString("en-IN", { weekday: "short" }).slice(0, 3),
+  );
 
   return (
     <div className="relative">
       <DashboardBackground />
 
-      <header>
-        <h1 className="text-display-md text-mono-ink">Dashboard</h1>
-        <p className="mt-1 text-body-sm text-mono-ink-subtle">
-          Welcome back to Tweetflow.
-        </p>
+      <header className="relative isolate overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] px-7 py-7 backdrop-blur-xl">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-24 -top-32 -z-10 h-72 w-[36rem] rounded-full opacity-70 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(29,155,240,0.30), rgba(29,155,240,0) 70%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-28 -right-20 -z-10 h-64 w-96 rounded-full opacity-50 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(120,86,255,0.28), rgba(120,86,255,0) 70%)",
+          }}
+        />
+
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+              </span>
+              <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/45">
+                {new Date().toLocaleDateString("en-IN", {
+                  weekday: "long",
+                  day: "numeric",
+                  month: "long",
+                })}
+              </span>
+            </div>
+
+            <h1 className="mt-3 bg-gradient-to-br from-white via-white to-white/45 bg-clip-text text-[44px] font-semibold leading-[1.05] tracking-[-0.035em] text-transparent">
+              Dashboard
+            </h1>
+
+            <p className="mt-2 text-body-sm text-white/50">
+              <span className="font-medium text-white/80">{scheduledCount}</span>{" "}
+              scheduled
+              <span className="mx-2 text-white/20">·</span>
+              <span className="font-medium text-white/80">{draftCount}</span>{" "}
+              drafts waiting
+              <span className="mx-2 text-white/20">·</span>
+              <span
+                className={
+                  twitterAccount ? "text-emerald-400/80" : "text-amber-400/80"
+                }
+              >
+                {twitterAccount ? "connected" : "not connected"}
+              </span>
+            </p>
+          </div>
+
+          <Link
+            href="/compose"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-b from-[#3aa8f2] to-[#1a8cd8] px-5 py-2.5 text-button font-semibold text-white shadow-[0_8px_28px_-8px_rgba(29,155,240,0.75)] ring-1 ring-inset ring-white/25 transition-all duration-200 hover:shadow-[0_10px_34px_-8px_rgba(29,155,240,0.95)] active:scale-[0.98]"
+          >
+            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+            <MessageSquare size={16} className="[stroke-width:2]" />
+            Write a tweet
+          </Link>
+        </div>
       </header>
 
-      <StaggerReveal className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="lg:col-span-2">
-          <StatCard
-            size="lg"
-            label="Total Tweets"
-            value={totalTweets}
-            icon={MessageSquare}
-            sparkline={totalTrend}
-          />
-        </div>
-        <div className="lg:col-span-2">
-          <StatCard
-            size="lg"
-            label="Scheduled Posts"
-            value={scheduledCount}
-            icon={Clock}
-            sparkline={scheduledTrend}
-          />
-        </div>
+      <StaggerReveal className="mt-6 grid grid-cols-1 gap-2 lg:grid-cols-2">
+        <TweetBreakdown
+          total={totalTweets}
+          drafts={draftCount}
+          scheduled={scheduledCount}
+          published={publishedCount}
+          sparkline={totalTrend}
+        />
+        <ActivityChart
+          days={dayLabels}
+          created={totalTrend}
+          scheduled={scheduledTrend}
+        />
+      </StaggerReveal>
+
+      <StaggerReveal
+        className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3"
+        delay={0.06}
+      >
         <StatCard
           size="sm"
           label="Engagement Forecast"
@@ -122,6 +191,13 @@ export default async function Home() {
             actionLabel: "Not available yet",
           }}
         />
+        <StatCard
+          size="sm"
+          label="Scheduled Posts"
+          value={scheduledCount}
+          icon={Clock}
+          sparkline={scheduledTrend}
+        />
       </StaggerReveal>
 
       <div className="mt-6 h-px w-full bg-mono-hairline" />
@@ -138,12 +214,12 @@ export default async function Home() {
                   Nothing scheduled yet. Queue up your first tweet.
                 </p>
                 <Magnetic>
-                  <a
+                  <Link
                     href="/compose"
                     className="rounded-full border border-mono-hairline-strong px-3 py-1.5 text-caption font-medium text-mono-ink transition-colors duration-150 hover:bg-white/[0.06]"
                   >
                     New Tweet
-                  </a>
+                  </Link>
                 </Magnetic>
               </div>
             ) : (
@@ -187,12 +263,12 @@ export default async function Home() {
                 No X account connected yet.
               </p>
               <Magnetic className="block w-full">
-                <a
+                <Link
                   href="/settings"
                   className="block w-full rounded-full border border-mono-hairline-strong py-2 text-center text-button text-mono-ink transition-colors duration-150 hover:bg-white/[0.06]"
                 >
                   Connect X Account
-                </a>
+                </Link>
               </Magnetic>
             </div>
           )}

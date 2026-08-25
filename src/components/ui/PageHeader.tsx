@@ -12,7 +12,7 @@ export default function PageHeader({
   return (
     <header className="flex items-start justify-between gap-4">
       <div>
-        <h1 className="text-display-md text-mono-ink">{title}</h1>
+        <h1 className="text-page-title text-mono-ink">{title}</h1>
         <p className="mt-1 text-body-sm text-mono-ink-subtle">{subtitle}</p>
       </div>
       {action}
