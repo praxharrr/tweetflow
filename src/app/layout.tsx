@@ -8,6 +8,7 @@ import PageTransition from "@/components/motion/PageTransition";
 import ToastProvider from "@/components/toast/ToastProvider";
 import ShortcutsProvider from "@/components/shortcuts/ShortcutsProvider";
 import { getPostingStreak } from "@/lib/getPostingStreak";
+import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "Tweetflow",
@@ -20,7 +21,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const streak = await getPostingStreak();
+  const [streak, draftCount, queueCount, account, nextPost] = await Promise.all([
+    getPostingStreak(),
+    prisma.post.count({ where: { status: "draft" } }),
+    prisma.post.count({ where: { status: "scheduled" } }),
+    prisma.twitterAccount.findFirst(),
+    prisma.post.findFirst({
+      where: { status: "scheduled" },
+      orderBy: { scheduledFor: "asc" },
+    }),
+  ]);
 
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
@@ -28,7 +38,20 @@ export default async function RootLayout({
         <NoiseOverlay />
         <ToastProvider>
           <ShortcutsProvider>
-            <Sidebar streak={streak} />
+            <Sidebar
+              streak={streak}
+              draftCount={draftCount}
+              queueCount={queueCount}
+              username={account?.username ?? null}
+              nextPost={
+                nextPost?.scheduledFor
+                  ? {
+                      content: nextPost.content,
+                      scheduledFor: nextPost.scheduledFor.toISOString(),
+                    }
+                  : null
+              }
+            />
             <main className="relative flex-1 overflow-hidden p-8">
               <div
                 aria-hidden

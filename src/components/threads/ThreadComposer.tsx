@@ -14,13 +14,13 @@ import {
   ChevronUp,
   ChevronDown,
   Scissors,
+  MessagesSquare,
 } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import CharRing from "@/components/ui/CharRing";
 import TwoColumnLayout from "@/components/ui/TwoColumnLayout";
 import TweetPreview from "@/components/tweet-preview/TweetPreview";
-import { fieldClass } from "@/components/ui/field-styles";
 import { splitIntoThread } from "@/lib/splitIntoThread";
 
 const MAX_CHARS = 280;
@@ -121,7 +121,8 @@ export default function ThreadComposer({
         body: JSON.stringify({
           tweets: validTweets,
           status,
-          scheduledFor: status === "scheduled" ? new Date(scheduledFor).toISOString() : undefined,
+          scheduledFor:
+            status === "scheduled" ? new Date(scheduledFor).toISOString() : undefined,
         }),
       });
       if (res.ok) {
@@ -166,30 +167,45 @@ export default function ThreadComposer({
   return (
     <TwoColumnLayout
       left={
-        <Card className="p-5">
+        <Card className="relative isolate overflow-hidden p-5">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -left-16 -top-24 -z-10 h-48 w-96 rounded-full opacity-40 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(29,155,240,0.20), rgba(29,155,240,0) 70%)",
+            }}
+          />
+
           <div role="status" aria-live="polite" className="sr-only">
             {saved === "draft" && "Thread saved as draft"}
             {saved === "scheduled" && "Thread scheduled"}
           </div>
 
-          <div className="mb-3 flex gap-2">
+          <div className="mb-4 flex items-center gap-2 rounded-xl border border-white/[0.08] bg-black/25 p-1.5 pl-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-all duration-200 focus-within:border-primary/40 focus-within:shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_0_3px_rgba(29,155,240,0.12)]">
             <input
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="Give AI a topic to turn into a full thread…"
               aria-label="AI thread topic"
-              className={fieldClass}
+              className="min-w-0 flex-1 bg-transparent text-body-sm text-mono-ink outline-none placeholder:text-mono-ink-faint"
             />
-            <Button
+            <button
               type="button"
-              variant="secondary"
               onClick={handleAIAssist}
               disabled={!topic.trim() || isGenerating}
-              className="shrink-0"
+              className="group relative inline-flex shrink-0 items-center gap-2 overflow-hidden rounded-lg border border-primary/25 bg-primary/[0.08] px-3.5 py-2 text-button font-semibold text-primary transition-all duration-200 hover:border-primary/50 hover:bg-primary/[0.15] hover:shadow-[0_0_20px_-4px_rgba(29,155,240,0.5)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
             >
-              {isGenerating ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
-              {isGenerating ? "Writing thread…" : "Generate Thread"}
-            </Button>
+              {isGenerating ? (
+                <Loader2 size={16} className="animate-spin" />
+              ) : (
+                <Sparkles
+                  size={16}
+                  className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
+                />
+              )}
+              {isGenerating ? "Writing…" : "Generate Thread"}
+            </button>
           </div>
 
           <button
@@ -202,14 +218,14 @@ export default function ThreadComposer({
           </button>
 
           {isSplitOpen && (
-            <div className="mb-4 rounded-md border border-mono-hairline p-3">
+            <div className="mb-4 rounded-xl border border-mono-hairline bg-black/20 p-3">
               <textarea
                 value={splitText}
                 onChange={(e) => setSplitText(e.target.value)}
                 rows={4}
                 placeholder="Paste a long paragraph — it’ll be broken into 280-character tweets at sentence boundaries…"
                 aria-label="Long text to split into a thread"
-                className={`${fieldClass} resize-none`}
+                className="w-full resize-none bg-transparent text-body-sm text-mono-ink outline-none placeholder:text-mono-ink-faint"
               />
               <div className="mt-2 flex items-center gap-2">
                 <Button
@@ -239,31 +255,39 @@ export default function ThreadComposer({
                     e.preventDefault();
                     setDragOverIndex(index);
                   }}
-                  onDragLeave={() => setDragOverIndex((prev) => (prev === index ? null : prev))}
+                  onDragLeave={() =>
+                    setDragOverIndex((prev) => (prev === index ? null : prev))
+                  }
                   onDrop={(e) => {
                     e.preventDefault();
                     handleDrop(index);
                   }}
                 >
                   <div className="flex flex-col items-center">
-                    <div
-                      draggable
-                      onDragStart={() => {
-                        dragIndex.current = index;
-                      }}
-                      onDragEnd={() => setDragOverIndex(null)}
-                      className="flex h-7 w-7 shrink-0 cursor-grab items-center justify-center rounded-full border border-mono-hairline-strong bg-mono-surface-2 font-mono text-[10px] text-mono-ink-subtle active:cursor-grabbing"
-                      aria-hidden
-                    >
-                      {index + 1}
+                    <div className="relative">
+                      <div
+                        aria-hidden
+                        className="absolute inset-0 -z-10 rounded-full bg-primary/40 blur-md"
+                      />
+                      <div
+                        draggable
+                        onDragStart={() => {
+                          dragIndex.current = index;
+                        }}
+                        onDragEnd={() => setDragOverIndex(null)}
+                        className="relative flex h-7 w-7 shrink-0 cursor-grab items-center justify-center rounded-full bg-gradient-to-b from-[#3aa8f2] to-[#1a8cd8] font-mono text-[10px] font-semibold text-white shadow-[0_2px_10px_-3px_rgba(29,155,240,0.7)] ring-1 ring-inset ring-white/20 active:cursor-grabbing"
+                        aria-hidden
+                      >
+                        {index + 1}
+                      </div>
                     </div>
                     {index < tweets.length - 1 && (
-                      <div className="my-1 w-px flex-1 bg-mono-hairline-strong" />
+                      <div className="my-1 w-px flex-1 bg-gradient-to-b from-primary/50 to-mono-hairline-strong" />
                     )}
                   </div>
 
                   <div className="min-w-0 flex-1 pb-4">
-                    <div className="rounded-md border border-mono-hairline p-3">
+                    <div className="rounded-xl border border-mono-hairline bg-gradient-to-b from-white/[0.025] to-transparent p-3 shadow-[0_1px_0_rgba(255,255,255,0.04),0_10px_28px_-16px_rgba(0,0,0,0.85)] transition-all duration-200 focus-within:border-primary/40 focus-within:shadow-[0_1px_0_rgba(255,255,255,0.04),0_10px_28px_-16px_rgba(0,0,0,0.85),0_0_0_3px_rgba(29,155,240,0.12)]">
                       <div className="mb-2 flex items-center justify-between">
                         <div className="flex items-center gap-1.5 text-caption font-medium text-mono-ink-faint">
                           <GripVertical size={12} className="[stroke-width:1.25]" />
@@ -321,21 +345,21 @@ export default function ThreadComposer({
           <button
             type="button"
             onClick={addTweet}
-            className="flex items-center gap-2 text-body-sm text-mono-ink-subtle transition-colors duration-150 hover:text-mono-ink"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-mono-hairline-strong px-3 py-2.5 text-body-sm text-mono-ink-subtle transition-all duration-150 hover:border-primary/40 hover:bg-primary/[0.04] hover:text-mono-ink"
           >
-            <Plus size={16} className="[stroke-width:1.25]" />
+            <Plus size={16} className="[stroke-width:1.5]" />
             Add tweet
           </button>
 
           <div className="mt-5 flex flex-col gap-3 border-t border-mono-hairline pt-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-2">
-              <CalendarClock size={16} className="[stroke-width:1.25] text-mono-ink-subtle" />
+            <div className="flex items-center gap-2 rounded-xl border border-mono-hairline bg-black/30 px-3 py-1.5">
+              <CalendarClock size={16} className="[stroke-width:1.5] text-primary" />
               <input
                 type="datetime-local"
                 aria-label="Scheduled date and time"
                 value={scheduledFor}
                 onChange={(e) => setScheduledFor(e.target.value)}
-                className={`${fieldClass} !w-auto py-1.5`}
+                className="bg-transparent text-body-sm text-mono-ink outline-none [color-scheme:dark]"
               />
             </div>
 
@@ -375,8 +399,33 @@ export default function ThreadComposer({
         </Card>
       }
       right={
-        <Card className="p-4">
-          <span className="text-eyebrow uppercase text-white/40">Thread preview</span>
+        <Card className="relative isolate overflow-hidden p-4">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-14 -top-16 -z-10 h-40 w-64 rounded-full opacity-30 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(120,86,255,0.22), rgba(120,86,255,0) 70%)",
+            }}
+          />
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-eyebrow uppercase text-white/40">
+                Thread Preview
+              </span>
+              {previewTweets.length > 0 && (
+                <span className="rounded-full bg-primary/10 px-2 py-0.5 font-mono text-[10px] text-primary">
+                  {previewTweets.length}
+                </span>
+              )}
+            </div>
+            <MessagesSquare
+              size={15}
+              className="shrink-0 [stroke-width:1.25] text-mono-ink-subtle"
+            />
+          </div>
+
           <div className="mt-3 flex flex-col">
             {previewTweets.length === 0 ? (
               <p className="text-body-sm text-mono-ink-faint">
@@ -386,9 +435,9 @@ export default function ThreadComposer({
               previewTweets.map((content, index) => (
                 <div key={index} className="relative flex gap-2">
                   <div className="flex flex-col items-center">
-                    <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-white/30" />
+                    <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary shadow-[0_0_6px_-1px_rgba(29,155,240,0.8)]" />
                     {index < previewTweets.length - 1 && (
-                      <div className="my-1 w-px flex-1 bg-mono-hairline-strong" />
+                      <div className="my-1 w-px flex-1 bg-gradient-to-b from-primary/40 to-mono-hairline-strong" />
                     )}
                   </div>
                   <div className="min-w-0 flex-1 pb-3">
