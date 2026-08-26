@@ -1,8 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { generateCodeVerifier, generateCodeChallenge, generateState } from "@/lib/pkce";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const origin = req.nextUrl.origin;
+  const isProd = process.env.NODE_ENV === "production";
+
   const codeVerifier = generateCodeVerifier();
   const codeChallenge = generateCodeChallenge(codeVerifier);
   const state = generateState();
@@ -10,13 +13,13 @@ export async function GET() {
   const cookieStore = await cookies();
   cookieStore.set("x_code_verifier", codeVerifier, {
     httpOnly: true,
-    secure: false,
+    secure: isProd,
     maxAge: 600,
     path: "/",
   });
   cookieStore.set("x_oauth_state", state, {
     httpOnly: true,
-    secure: false,
+    secure: isProd,
     maxAge: 600,
     path: "/",
   });
@@ -24,7 +27,7 @@ export async function GET() {
   const params = new URLSearchParams({
     response_type: "code",
     client_id: process.env.TWITTER_CLIENT_ID!,
-    redirect_uri: "http://localhost:3000/api/auth/callback/twitter",
+    redirect_uri: `${origin}/api/auth/callback/twitter`,
     scope: "tweet.read tweet.write users.read offline.access",
     state,
     code_challenge: codeChallenge,

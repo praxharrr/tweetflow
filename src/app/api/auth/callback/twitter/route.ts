@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(req: NextRequest) {
+  const origin = req.nextUrl.origin;
   const code = req.nextUrl.searchParams.get("code");
   const state = req.nextUrl.searchParams.get("state");
 
@@ -11,7 +12,7 @@ export async function GET(req: NextRequest) {
   const codeVerifier = cookieStore.get("x_code_verifier")?.value;
 
   if (!code || !state || state !== savedState || !codeVerifier) {
-    return NextResponse.redirect("http://localhost:3000/?error=oauth_failed");
+    return NextResponse.redirect(`${origin}/?error=oauth_failed`);
   }
 
   const basicAuth = Buffer.from(
@@ -28,7 +29,7 @@ export async function GET(req: NextRequest) {
       code,
       grant_type: "authorization_code",
       client_id: process.env.TWITTER_CLIENT_ID!,
-      redirect_uri: "http://localhost:3000/api/auth/callback/twitter",
+      redirect_uri: `${origin}/api/auth/callback/twitter`,
       code_verifier: codeVerifier,
     }),
   });
@@ -36,7 +37,7 @@ export async function GET(req: NextRequest) {
   const tokenData = await tokenRes.json();
   if (!tokenRes.ok) {
     console.error(tokenData);
-    return NextResponse.redirect("http://localhost:3000/?error=token_exchange_failed");
+    return NextResponse.redirect(`${origin}/?error=token_exchange_failed`);
   }
 
   const { access_token, refresh_token, expires_in } = tokenData;
@@ -48,7 +49,7 @@ export async function GET(req: NextRequest) {
 
   if (!userRes.ok) {
     console.error(userData);
-    return NextResponse.redirect("http://localhost:3000/?error=profile_fetch_failed");
+    return NextResponse.redirect(`${origin}/?error=profile_fetch_failed`);
   }
 
   await prisma.twitterAccount.upsert({
@@ -71,5 +72,5 @@ export async function GET(req: NextRequest) {
   cookieStore.delete("x_code_verifier");
   cookieStore.delete("x_oauth_state");
 
-  return NextResponse.redirect("http://localhost:3000/");
+  return NextResponse.redirect(origin);
 }
