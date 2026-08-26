@@ -148,3 +148,9 @@ body {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+textarea:focus,
+textarea:focus-visible,
+input:focus,
+input:focus-visible {
+  outline: none !important;
+}
