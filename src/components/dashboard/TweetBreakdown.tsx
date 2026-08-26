@@ -26,7 +26,7 @@ export default function TweetBreakdown({
   const safeTotal = total || 1;
 
   return (
-    <div className="group flex h-full flex-col rounded-lg border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
+    <div className="group flex h-full flex-col rounded-lg border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.015] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.3)] backdrop-blur-xl">
       <div className="flex items-start justify-between">
         <div>
           <span className="text-eyebrow uppercase text-white/40">

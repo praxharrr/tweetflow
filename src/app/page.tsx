@@ -2,6 +2,7 @@ import Link from "next/link";
 import ActivityChart from "@/components/dashboard/ActivityChart";
 import TweetBreakdown from "@/components/dashboard/TweetBreakdown";
 import { dayLabel, formatCountdown } from "@/lib/formatCountdown";
+import PredictiveArcBackground from "@/components/dashboard/PredictiveArcBackground";
 import {
   MessageSquare,
   Clock,
@@ -87,6 +88,7 @@ export default async function Home() {
   return (
     <div className="relative">
       <DashboardBackground />
+      <PredictiveArcBackground />
 
       <header className="relative isolate overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] px-7 py-7 backdrop-blur-xl">
         <div

@@ -31,7 +31,7 @@ export default function StatCard({
 
   return (
     <div
-      className={`group flex h-full flex-col justify-between rounded-lg border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)] transition-colors duration-150 hover:from-mono-surface-2 hover:to-mono-surface-2 ${
+      className={`group flex h-full flex-col justify-between rounded-lg border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-150 hover:from-white/[0.06] hover:to-white/[0.03] ${
         isLg ? "p-6" : "p-5"
       }`}
     >
