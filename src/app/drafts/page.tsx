@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FileEdit, Search, X } from "lucide-react";
 import DraftsBoard from "@/components/drafts/DraftsBoard";
 import DraftsScene from "@/components/drafts/DraftsScene";
+import PredictiveArcBackground from "@/components/dashboard/PredictiveArcBackground";
 
 export default async function DraftsPage({
   searchParams,
@@ -43,7 +44,9 @@ export default async function DraftsPage({
     : null;
 
   return (
-    <div>
+    <div className="relative min-h-screen">
+      <PredictiveArcBackground />
+
       <header className="relative isolate overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] px-7 py-7 backdrop-blur-xl">
         <div
           aria-hidden

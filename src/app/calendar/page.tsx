@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import WeekCalendar from "@/components/calendar/WeekCalendar";
 import MonthCalendar from "@/components/calendar/MonthCalendar";
 import CalendarScene from "@/components/calendar/CalendarScene";
+import PredictiveArcBackground from "@/components/dashboard/PredictiveArcBackground";
 
 function mondayOf(date: Date): Date {
   const d = new Date(date);
@@ -113,7 +114,9 @@ export default async function CalendarPage({
     });
 
     return (
-      <div>
+      <div className="relative min-h-screen">
+        <PredictiveArcBackground />
+
         <CalendarHeader view="month" count={posts.length} countLabel="this month" />
 
         <div className="relative isolate mt-6 overflow-hidden rounded-2xl border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
@@ -174,9 +177,10 @@ export default async function CalendarPage({
   const rangeLabel = `${weekStart.toLocaleDateString("en-IN", { day: "numeric", month: "short" })} – ${weekEndDisplay.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}`;
 
   return (
-    <div>
-      <CalendarHeader view="week" count={posts.length} countLabel="this week" />
+    <div className="relative min-h-screen">
+      <PredictiveArcBackground />
 
+      <CalendarHeader view="week" count={posts.length} countLabel="this week" />
       <div className="relative isolate mt-6 overflow-hidden rounded-2xl border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">

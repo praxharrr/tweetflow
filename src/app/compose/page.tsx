@@ -2,6 +2,7 @@ import TweetComposer from "@/components/compose/TweetComposer";
 import { PenSquare, FileEdit, CalendarClock } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import ComposeScene from "@/components/compose/ComposeScene";
+import PredictiveArcBackground from "@/components/dashboard/PredictiveArcBackground";
 
 export default async function ComposePage({
   searchParams,
@@ -25,7 +26,9 @@ export default async function ComposePage({
   const handle = account?.username ?? displayName.toLowerCase().replace(/\s+/g, "");
 
   return (
-    <div>
+    <div className="relative min-h-screen">
+      <PredictiveArcBackground />
+
       <header className="relative isolate overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] px-7 py-7 backdrop-blur-xl">
         <div
           aria-hidden

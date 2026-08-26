@@ -1,6 +1,7 @@
 import ThreadComposer from "@/components/threads/ThreadComposer";
 import { MessagesSquare, FileEdit, CalendarClock } from "lucide-react";
 import { prisma } from "@/lib/prisma";
+import PredictiveArcBackground from "@/components/dashboard/PredictiveArcBackground";
 
 export default async function ThreadsPage() {
   const [account, settings, draftThreadGroups, scheduledThreadGroups] =
@@ -28,7 +29,9 @@ export default async function ThreadsPage() {
   const scheduledThreadCount = scheduledThreadGroups.length;
 
   return (
-    <div>
+    <div className="relative min-h-screen">
+      <PredictiveArcBackground />
+
       <header className="relative isolate overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] px-7 py-7 backdrop-blur-xl">
         <div
           aria-hidden

@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button";
 import AIEmptyState from "@/components/ai-tools/AIEmptyState";
 import CardSkeleton from "@/components/ai-tools/CardSkeleton";
 import HappeningNow from "@/components/trending-topics/HappeningNow";
+import PredictiveArcBackground from "@/components/dashboard/PredictiveArcBackground";
 
 const EXAMPLE_NICHES = ["AI tools and tech", "Personal finance", "Fitness", "Indie games"];
 
@@ -64,7 +65,9 @@ export default function TrendingTopicsPage() {
   }
 
   return (
-    <div>
+    <div className="relative min-h-screen">
+      <PredictiveArcBackground />
+
       <header className="relative isolate overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] px-7 py-7 backdrop-blur-xl">
         <div
           aria-hidden
