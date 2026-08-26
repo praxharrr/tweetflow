@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, CalendarDays } from "lucide-react";
 import { prisma } from "@/lib/prisma";
-import PageHeader from "@/components/ui/PageHeader";
 import WeekCalendar from "@/components/calendar/WeekCalendar";
 import MonthCalendar from "@/components/calendar/MonthCalendar";
+import CalendarScene from "@/components/calendar/CalendarScene";
 
 function mondayOf(date: Date): Date {
   const d = new Date(date);
@@ -16,6 +16,67 @@ function mondayOf(date: Date): Date {
 function toDateParam(d: Date): string {
   const pad = (n: number) => String(n).padStart(2, "0");
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+function CalendarHeader({
+  view,
+  count,
+  countLabel,
+}: {
+  view: "week" | "month";
+  count: number;
+  countLabel: string;
+}) {
+  return (
+    <header className="relative isolate overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] px-7 py-7 backdrop-blur-xl">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-20 -top-28 -z-10 h-64 w-[32rem] rounded-full opacity-70 blur-3xl"
+        style={{
+          background: "radial-gradient(circle, rgba(29,155,240,0.28), rgba(29,155,240,0) 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 -right-16 -z-10 h-56 w-80 rounded-full opacity-45 blur-3xl"
+        style={{
+          background: "radial-gradient(circle, rgba(120,86,255,0.25), rgba(120,86,255,0) 70%)",
+        }}
+      />
+
+      <CalendarScene />
+
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <div className="flex items-center gap-2">
+            <CalendarDays size={13} className="[stroke-width:1.75] text-primary" />
+            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/45">
+              Schedule
+            </span>
+          </div>
+
+          <h1 className="mt-3 bg-gradient-to-br from-white via-white to-white/45 bg-clip-text text-[40px] font-semibold leading-[1.05] tracking-[-0.03em] text-transparent">
+            Calendar
+          </h1>
+
+          <p className="mt-2 max-w-md text-body-sm text-white/50">
+            Click an empty slot to schedule, drag a tweet to reschedule.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5 rounded-2xl border border-primary/25 bg-primary/[0.07] px-4 py-2.5">
+            <CalendarDays size={15} className="[stroke-width:1.75] text-primary" />
+            <div>
+              <div className="text-headline leading-none tabular-nums text-mono-ink">{count}</div>
+              <div className="mt-0.5 text-[11px] text-primary/80">{countLabel}</div>
+            </div>
+          </div>
+          <ViewToggle view={view} />
+        </div>
+      </div>
+    </header>
+  );
 }
 
 export default async function CalendarPage({
@@ -53,13 +114,9 @@ export default async function CalendarPage({
 
     return (
       <div>
-        <PageHeader
-          title="Calendar"
-          subtitle="Click an empty slot to schedule, drag a tweet to reschedule."
-          action={<ViewToggle view="month" />}
-        />
+        <CalendarHeader view="month" count={posts.length} countLabel="this month" />
 
-        <div className="mt-6 rounded-lg border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
+        <div className="relative isolate mt-6 overflow-hidden rounded-2xl border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <CalendarDays size={18} className="[stroke-width:1.25] text-mono-ink-subtle" />
@@ -68,13 +125,13 @@ export default async function CalendarPage({
             <div className="flex items-center gap-1">
               <Link
                 href={`/calendar?view=month&month=${prevMonth.getFullYear()}-${String(prevMonth.getMonth() + 1).padStart(2, "0")}`}
-                className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
+                className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:border-primary/40 hover:bg-primary/[0.06] hover:text-primary"
               >
                 <ChevronLeft size={16} />
               </Link>
               <Link
                 href={`/calendar?view=month&month=${nextMonth.getFullYear()}-${String(nextMonth.getMonth() + 1).padStart(2, "0")}`}
-                className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
+                className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:border-primary/40 hover:bg-primary/[0.06] hover:text-primary"
               >
                 <ChevronRight size={16} />
               </Link>
@@ -118,13 +175,9 @@ export default async function CalendarPage({
 
   return (
     <div>
-      <PageHeader
-        title="Calendar"
-        subtitle="Click an empty slot to schedule, drag a tweet to reschedule."
-        action={<ViewToggle view="week" />}
-      />
+      <CalendarHeader view="week" count={posts.length} countLabel="this week" />
 
-      <div className="mt-6 rounded-lg border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
+      <div className="relative isolate mt-6 overflow-hidden rounded-2xl border border-mono-hairline bg-gradient-to-b from-mono-surface-2 to-mono-surface p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <CalendarDays size={18} className="[stroke-width:1.25] text-mono-ink-subtle" />
@@ -133,13 +186,13 @@ export default async function CalendarPage({
           <div className="flex items-center gap-1">
             <Link
               href={`/calendar?view=week&week=${toDateParam(prevWeek)}`}
-              className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
+              className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:border-primary/40 hover:bg-primary/[0.06] hover:text-primary"
             >
               <ChevronLeft size={16} />
             </Link>
             <Link
               href={`/calendar?view=week&week=${toDateParam(nextWeek)}`}
-              className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
+              className="rounded-full border border-mono-hairline p-1.5 text-mono-ink-subtle transition-colors duration-150 hover:border-primary/40 hover:bg-primary/[0.06] hover:text-primary"
             >
               <ChevronRight size={16} />
             </Link>
@@ -161,19 +214,23 @@ export default async function CalendarPage({
 
 function ViewToggle({ view }: { view: "week" | "month" }) {
   return (
-    <div className="flex items-center gap-1 rounded-full border border-mono-hairline p-0.5">
+    <div className="flex items-center gap-1 rounded-2xl border border-white/[0.08] bg-black/25 p-1">
       <Link
         href="/calendar?view=week"
-        className={`rounded-full px-3 py-1.5 text-caption font-medium transition-colors duration-150 ${
-          view === "week" ? "bg-white/[0.08] text-mono-ink" : "text-mono-ink-subtle hover:text-mono-ink"
+        className={`rounded-xl px-3 py-1.5 text-caption font-medium transition-all duration-150 ${
+          view === "week"
+            ? "bg-primary/[0.15] text-primary shadow-[0_0_10px_-4px_rgba(29,155,240,0.4)]"
+            : "text-mono-ink-subtle hover:text-mono-ink"
         }`}
       >
         Week
       </Link>
       <Link
         href="/calendar?view=month"
-        className={`rounded-full px-3 py-1.5 text-caption font-medium transition-colors duration-150 ${
-          view === "month" ? "bg-white/[0.08] text-mono-ink" : "text-mono-ink-subtle hover:text-mono-ink"
+        className={`rounded-xl px-3 py-1.5 text-caption font-medium transition-all duration-150 ${
+          view === "month"
+            ? "bg-primary/[0.15] text-primary shadow-[0_0_10px_-4px_rgba(29,155,240,0.4)]"
+            : "text-mono-ink-subtle hover:text-mono-ink"
         }`}
       >
         Month

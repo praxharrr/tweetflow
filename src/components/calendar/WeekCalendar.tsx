@@ -152,10 +152,24 @@ export default function WeekCalendar({
           {days.map((day, i) => (
             <div
               key={i}
-              className="border-l border-mono-hairline px-2 py-2 text-center"
+              className={`border-l border-mono-hairline px-2 py-2 text-center ${
+                i === todayIndex ? "bg-primary/[0.06]" : ""
+              }`}
             >
-              <div className="text-eyebrow uppercase text-white/40">{DAY_LABELS[i]}</div>
-              <div className="text-body-sm text-mono-ink">{day.getDate()}</div>
+              <div
+                className={`text-eyebrow uppercase ${
+                  i === todayIndex ? "text-primary/70" : "text-white/40"
+                }`}
+              >
+                {DAY_LABELS[i]}
+              </div>
+              <div
+                className={`text-body-sm ${
+                  i === todayIndex ? "font-semibold text-primary" : "text-mono-ink"
+                }`}
+              >
+                {day.getDate()}
+              </div>
             </div>
           ))}
         </div>
@@ -167,8 +181,8 @@ export default function WeekCalendar({
               style={{ gridTemplateColumns: GRID_COLUMNS, height: HOURS.length * ROW_HEIGHT }}
             >
               <div style={{ gridColumn: todayIndex + 2, marginTop: nowTopOffset }} className="relative">
-                <div className="absolute inset-x-0 top-0 h-px bg-white/70" />
-                <div className="absolute -left-1 -top-[3px] h-1.5 w-1.5 rounded-full bg-white" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary via-primary to-transparent shadow-[0_0_8px_-1px_rgba(29,155,240,0.9)]" />
+                <div className="absolute -left-1 -top-[3px] h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_6px_-1px_rgba(29,155,240,0.9)]" />
               </div>
             </div>
           )}
@@ -196,7 +210,7 @@ export default function WeekCalendar({
                         ? `Schedule a tweet for ${day.toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long" })} at ${formatHour(hour)}`
                         : undefined
                     }
-                    className="group relative cursor-pointer border-l border-mono-hairline hover:bg-white/[0.03] focus-visible:outline focus-visible:outline-1 focus-visible:outline-white/40 focus-visible:-outline-offset-1"
+                    className="group relative cursor-pointer border-l border-mono-hairline hover:bg-primary/[0.05] focus-visible:outline focus-visible:outline-1 focus-visible:outline-primary/60 focus-visible:-outline-offset-1"
                     onClick={(e) => {
                       if (cellPosts.length === 0) openQuickAdd(dayIndex, hour, e);
                     }}
@@ -216,13 +230,13 @@ export default function WeekCalendar({
                       <div
                         aria-hidden
                         className="pointer-events-none absolute inset-0"
-                        style={{ backgroundColor: `rgba(255,255,255,${score * 0.06})` }}
+                        style={{ backgroundColor: `rgba(29,155,240,${score * 0.1})` }}
                       />
                     )}
                     {cellPosts.length === 0 && (
                       <Plus
                         size={12}
-                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-mono-ink-faint opacity-0 [stroke-width:1.5] transition-opacity duration-150 group-hover:opacity-60"
+                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/60 opacity-0 [stroke-width:1.5] transition-opacity duration-150 group-hover:opacity-100"
                       />
                     )}
                     {cellPosts.map((post) => (
@@ -231,9 +245,9 @@ export default function WeekCalendar({
                         draggable
                         onDragStart={() => setDraggingId(post.id)}
                         onDragEnd={() => setDraggingId(null)}
-                        className={`absolute inset-x-0.5 top-0.5 truncate rounded bg-white/90 px-1 text-[10px] font-medium text-black transition-opacity duration-150 ${
+                        className={`absolute inset-0.5 flex items-center truncate rounded bg-gradient-to-b from-[#3aa8f2] to-[#1a8cd8] px-1 text-[10px] font-medium text-white shadow-[0_1px_6px_-1px_rgba(29,155,240,0.7)] transition-opacity duration-150 ${
                           movingId === post.id ? "opacity-40" : "opacity-100"
-                        }`}
+                        }`} 
                         title={post.content}
                       >
                         {post.content}
@@ -249,7 +263,7 @@ export default function WeekCalendar({
 
       {quickAdd && (
         <div
-          className="absolute z-20 w-64 rounded-lg border border-mono-hairline-strong bg-mono-surface-2 p-3 shadow-[0_12px_32px_rgba(0,0,0,0.6)]"
+          className="absolute z-20 w-64 rounded-lg border border-primary/25 bg-mono-surface-2 p-3 shadow-[0_16px_40px_-8px_rgba(0,0,0,0.7),0_0_0_1px_rgba(29,155,240,0.08)] backdrop-blur-sm"
           style={{ top: quickAdd.top, left: quickAdd.left }}
         >
           <div className="mb-2 flex items-center justify-between">

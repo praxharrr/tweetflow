@@ -77,12 +77,16 @@ export default function MonthCalendar({
             <Link
               key={i}
               href={weekHref}
-              className={`group flex min-h-[84px] flex-col rounded-md border p-1.5 transition-colors duration-150 hover:bg-white/[0.03] ${
-                isToday ? "border-mono-hairline-strong" : "border-mono-hairline"
+              className={`group flex min-h-[84px] flex-col rounded-md border p-1.5 transition-all duration-150 hover:border-primary/40 hover:bg-primary/[0.04] ${
+                isToday
+                  ? "border-primary/50 bg-primary/[0.05] shadow-[0_0_0_1px_rgba(29,155,240,0.15)]"
+                  : "border-mono-hairline"
               }`}
             >
               <span
-                className={`text-caption ${isToday ? "font-semibold text-mono-ink" : "text-mono-ink-faint"}`}
+                className={`text-caption ${
+                  isToday ? "font-semibold text-primary" : "text-mono-ink-faint"
+                }`}
               >
                 {day}
               </span>
@@ -90,9 +94,10 @@ export default function MonthCalendar({
                 {dayPosts.slice(0, 3).map((post) => (
                   <div
                     key={post.id}
-                    className="truncate rounded bg-white/10 px-1 py-0.5 text-[10px] text-mono-ink-subtle"
+                    className="flex items-center gap-1 truncate rounded bg-primary/10 px-1 py-0.5 text-[10px] text-mono-ink-soft"
                   >
-                    {post.content}
+                    <span className="h-1 w-1 shrink-0 rounded-full bg-primary" />
+                    <span className="truncate">{post.content}</span>
                   </div>
                 ))}
                 {dayPosts.length > 3 && (
