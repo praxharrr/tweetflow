@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { X, Clock, Pencil, CalendarClock, Trash2, Loader2, Check, GripVertical } from "lucide-react";
+import { X, Clock, Pencil, CalendarClock, Trash2, Loader2, Check, GripVertical, Sparkles } from "lucide-react";
 import EmptyState from "@/components/ui/EmptyState";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
@@ -40,6 +40,7 @@ function groupByDay(posts: Post[], now: Date) {
 function QueueRow({
   post,
   now,
+  isNextUp,
   isDragOver,
   onDragStart,
   onDragOver,
@@ -49,6 +50,7 @@ function QueueRow({
 }: {
   post: Post;
   now: Date;
+  isNextUp: boolean;
   isDragOver: boolean;
   onDragStart: () => void;
   onDragOver: () => void;
@@ -124,10 +126,20 @@ function QueueRow({
         draggable
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
-        className="absolute left-0 top-4 flex h-4 w-4 -translate-x-1/2 cursor-grab items-center justify-center rounded-full border-2 border-mono-surface bg-white/40 ring-4 ring-mono-surface active:cursor-grabbing"
+        className={`absolute left-0 top-4 flex h-4 w-4 -translate-x-1/2 cursor-grab items-center justify-center rounded-full border-2 border-mono-surface ring-4 ring-mono-surface active:cursor-grabbing ${
+          isNextUp
+            ? "bg-gradient-to-b from-[#4db5f5] to-[#1d9bf0] shadow-[0_0_14px_-1px_rgba(29,155,240,0.9)]"
+            : "bg-gradient-to-b from-[#3aa8f2] to-[#1a8cd8] shadow-[0_2px_8px_-2px_rgba(29,155,240,0.6)]"
+        }`}
         aria-hidden
       />
-      <Card className={`p-3.5 transition-opacity duration-150 ${isDragOver ? "opacity-50" : "opacity-100"}`}>
+      <Card
+        className={`p-3.5 transition-all duration-150 ${isDragOver ? "opacity-50" : "opacity-100"} ${
+          isNextUp
+            ? "border-primary/50 shadow-[0_0_0_1px_rgba(29,155,240,0.25),0_10px_28px_-14px_rgba(29,155,240,0.5)]"
+            : ""
+        }`}
+      >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
             {mode === "edit" ? (
@@ -155,7 +167,13 @@ function QueueRow({
                 />
               </div>
             ) : (
-              <div className="mt-1 flex items-center gap-2">
+              <div className="mt-1 flex flex-wrap items-center gap-2">
+                {isNextUp && mode === "view" && (
+                  <span className="flex items-center gap-1 rounded-full bg-primary/12 px-2 py-0.5 text-[10px] font-medium text-primary">
+                    <Sparkles size={10} className="[stroke-width:2]" />
+                    Up next
+                  </span>
+                )}
                 <span className="font-mono text-caption text-mono-ink-faint">
                   {new Date(post.scheduledFor).toLocaleTimeString("en-IN", {
                     hour: "2-digit",
@@ -250,6 +268,7 @@ export default function QueueTimeline({ posts: allPosts }: { posts: Post[] }) {
   const [pendingDeleteIds, setPendingDeleteIds] = useState<Set<string>>(new Set());
 
   const initialPosts = allPosts.filter((p) => !pendingDeleteIds.has(p.id));
+  const nextUpId = initialPosts[0]?.id;
 
   function handleDeleteOne(id: string) {
     setPendingDeleteIds((prev) => new Set(prev).add(id));
@@ -315,12 +334,13 @@ export default function QueueTimeline({ posts: allPosts }: { posts: Post[] }) {
             <span className="text-eyebrow uppercase text-white/40">{group.label}</span>
           </div>
           <div className="relative">
-            <div className="absolute left-0 top-2 bottom-2 w-px bg-mono-hairline-strong" />
+            <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary/50 to-mono-hairline-strong" />
             {group.posts.map((post) => (
               <QueueRow
                 key={post.id}
                 post={post}
                 now={now}
+                isNextUp={post.id === nextUpId}
                 isDragOver={dragOverId === post.id}
                 onDragStart={() => {
                   dragId.current = post.id;
