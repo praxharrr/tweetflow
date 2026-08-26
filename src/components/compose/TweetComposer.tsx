@@ -20,7 +20,6 @@ import CharRing from "@/components/ui/CharRing";
 import TwoColumnLayout from "@/components/ui/TwoColumnLayout";
 import TweetPreview from "@/components/tweet-preview/TweetPreview";
 import BestTimeCard from "./BestTimeCard";
-import { fieldClass } from "@/components/ui/field-styles";
 
 const MAX_CHARS = 280;
 
@@ -189,29 +188,45 @@ export default function TweetComposer({
   return (
     <TwoColumnLayout
       left={
-        <Card className="p-5">
+        <Card className="relative isolate overflow-hidden p-5">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -left-16 -top-24 -z-10 h-48 w-96 rounded-full opacity-40 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(29,155,240,0.20), rgba(29,155,240,0) 70%)",
+            }}
+          />
+
           <div role="status" aria-live="polite" className="sr-only">
             {saved && "Draft saved"}
             {scheduled && "Tweet scheduled"}
           </div>
-          <div className="mb-3 flex gap-2">
+
+          <div className="mb-4 flex items-center gap-2 rounded-xl border border-white/[0.08] bg-black/25 p-1.5 pl-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-all duration-200 focus-within:border-primary/40 focus-within:shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_0_3px_rgba(29,155,240,0.12)]">
             <input
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="Give AI a topic or idea to write about…"
               aria-label="AI topic or idea"
-              className={fieldClass}
+              className="min-w-0 flex-1 bg-transparent text-body-sm text-mono-ink outline-none placeholder:text-mono-ink-faint"
             />
-            <Button
+            <button
               type="button"
-              variant="secondary"
               onClick={handleAIAssist}
               disabled={!topic.trim() || isGenerating}
-              className="shrink-0"
+              className="group relative inline-flex shrink-0 items-center gap-2 overflow-hidden rounded-lg border border-primary/25 bg-primary/[0.08] px-3.5 py-2 text-button font-semibold text-primary transition-all duration-200 hover:border-primary/50 hover:bg-primary/[0.15] hover:shadow-[0_0_20px_-4px_rgba(29,155,240,0.5)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
             >
-              {isGenerating ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
+              {isGenerating ? (
+                <Loader2 size={16} className="animate-spin" />
+              ) : (
+                <Sparkles
+                  size={16}
+                  className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
+                />
+              )}
               {isGenerating ? "Writing…" : "AI Assist"}
-            </Button>
+            </button>
           </div>
 
           <div className="mb-2 flex items-center justify-between">
@@ -219,14 +234,16 @@ export default function TweetComposer({
             <CharRing count={charCount} max={MAX_CHARS} size={26} />
           </div>
 
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="What is happening? Share an actionable insight, update, or hook…"
-            aria-label="Tweet content"
-            rows={8}
-            className={`${fieldClass} resize-none`}
-          />
+          <div className="rounded-xl border border-mono-hairline bg-gradient-to-b from-white/[0.02] to-transparent shadow-[0_1px_0_rgba(255,255,255,0.04),0_10px_28px_-18px_rgba(0,0,0,0.85)] transition-all duration-200 focus-within:border-primary/40 focus-within:shadow-[0_1px_0_rgba(255,255,255,0.04),0_10px_28px_-18px_rgba(0,0,0,0.85),0_0_0_3px_rgba(29,155,240,0.12)]">
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="What is happening? Share an actionable insight, update, or hook…"
+              aria-label="Tweet content"
+              rows={8}
+              className="w-full resize-none border-none bg-transparent p-3 text-body-sm text-mono-ink outline-none placeholder:text-mono-ink-faint"
+            />
+          </div>
 
           {media.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-2">
@@ -284,12 +301,14 @@ export default function TweetComposer({
                   aria-checked={isScheduleMode}
                   aria-label="Schedule for later"
                   onClick={() => setIsScheduleMode((v) => !v)}
-                  className={`relative h-5 w-9 shrink-0 rounded-full transition-colors duration-150 ${
-                    isScheduleMode ? "bg-mono-ink" : "bg-white/15"
+                  className={`relative h-5 w-9 shrink-0 rounded-full transition-all duration-200 ${
+                    isScheduleMode
+                      ? "bg-gradient-to-b from-[#3aa8f2] to-[#1a8cd8] shadow-[0_0_10px_-2px_rgba(29,155,240,0.6)]"
+                      : "bg-white/15"
                   }`}
                 >
                   <span
-                    className="absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-black transition-transform duration-150"
+                    className="absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200"
                     style={{ transform: isScheduleMode ? "translateX(16px)" : "translateX(0)" }}
                   />
                 </button>
@@ -297,14 +316,14 @@ export default function TweetComposer({
               </label>
 
               {isScheduleMode && (
-                <div className="flex items-center gap-2">
-                  <CalendarClock size={16} className="[stroke-width:1.25] text-mono-ink-subtle" />
+                <div className="flex items-center gap-2 rounded-xl border border-mono-hairline bg-black/30 px-3 py-1.5">
+                  <CalendarClock size={16} className="[stroke-width:1.5] text-primary" />
                   <input
                     type="datetime-local"
                     aria-label="Scheduled date and time"
                     value={scheduledFor}
                     onChange={(e) => setScheduledFor(e.target.value)}
-                    className={`${fieldClass} !w-auto py-1.5`}
+                    className="bg-transparent text-body-sm text-mono-ink outline-none [color-scheme:dark]"
                   />
                 </div>
               )}

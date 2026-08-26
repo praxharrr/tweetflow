@@ -150,9 +150,9 @@ export default function DraftsBoard({
             <button
               key={f.key}
               onClick={() => setFilter(f.key)}
-              className={`rounded-full border px-3 py-1.5 text-caption font-medium transition-colors duration-150 ${
+              className={`rounded-full border px-3 py-1.5 text-caption font-medium transition-all duration-150 ${
                 filter === f.key
-                  ? "border-mono-hairline-strong bg-white/[0.08] text-mono-ink"
+                  ? "border-primary/40 bg-primary/[0.12] text-primary shadow-[0_0_12px_-4px_rgba(29,155,240,0.4)]"
                   : "border-mono-hairline text-mono-ink-subtle hover:bg-white/[0.04]"
               }`}
             >
@@ -186,25 +186,24 @@ export default function DraftsBoard({
         {filtered.length === 0 ? (
           <EmptyState icon={FileText} message={emptyMessage} />
         ) : (
-          <div className="columns-1 gap-2 sm:columns-2 lg:columns-3">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((draft) => (
-              <div key={draft.id} className="mb-2 break-inside-avoid">
-                <DraftCard
-                  draft={draft}
-                  displayName={displayName}
-                  handle={handle}
-                  selected={selected.has(draft.id)}
-                  onToggleSelect={toggleSelect}
-                  onDelete={handleDeleteOne}
-                />
-              </div>
+              <DraftCard
+                key={draft.id}
+                draft={draft}
+                displayName={displayName}
+                handle={handle}
+                selected={selected.has(draft.id)}
+                onToggleSelect={toggleSelect}
+                onDelete={handleDeleteOne}
+              />
             ))}
           </div>
         )}
       </div>
 
       {selected.size > 0 && (
-        <div className="fixed bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 rounded-full border border-mono-hairline-strong bg-mono-surface-2 px-4 py-2.5 shadow-[0_16px_40px_rgba(0,0,0,0.6)]">
+        <div className="fixed bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 rounded-full border border-primary/25 bg-mono-surface-2/95 px-4 py-2.5 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.75),0_0_0_1px_rgba(29,155,240,0.1)] backdrop-blur-xl">
           <span className="text-caption font-medium text-mono-ink">
             {selected.size} selected
           </span>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Pencil, Trash2, CalendarClock, Loader2, Check, X, Eye } from "lucide-react";
+import { Pencil, Trash2, CalendarClock, Loader2, Check, X, Eye, EyeOff } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import { fieldClass } from "@/components/ui/field-styles";
@@ -38,6 +38,7 @@ export default function DraftCard({
   const [scheduledFor, setScheduledFor] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [isScheduling, setIsScheduling] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   async function handleSaveEdit() {
     if (!content.trim()) return;
@@ -81,8 +82,10 @@ export default function DraftCard({
 
   return (
     <Card
-      className={`group relative flex flex-col p-4 transition-colors duration-150 ${
-        selected ? "border-mono-hairline-strong" : ""
+      className={`group relative flex h-full flex-col p-4 transition-all duration-200 ${
+        selected
+          ? "border-primary/50 shadow-[0_0_0_1px_rgba(29,155,240,0.25),0_10px_28px_-14px_rgba(29,155,240,0.4)]"
+          : "hover:-translate-y-0.5 hover:border-mono-hairline-strong hover:shadow-[0_14px_32px_-16px_rgba(0,0,0,0.7)]"
       }`}
     >
       <button
@@ -92,35 +95,39 @@ export default function DraftCard({
         aria-pressed={selected}
         className={`absolute right-3 top-3 z-10 flex h-5 w-5 items-center justify-center rounded-full border transition-all duration-150 ${
           selected
-            ? "border-mono-ink bg-mono-ink text-black opacity-100"
+            ? "border-primary bg-gradient-to-b from-[#3aa8f2] to-[#1a8cd8] text-white opacity-100 shadow-[0_2px_8px_-2px_rgba(29,155,240,0.6)]"
             : "border-mono-hairline-strong bg-black/60 text-transparent opacity-0 group-hover:opacity-100"
         }`}
       >
         <Check size={12} />
       </button>
 
-      {!isEditing && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end rounded-lg bg-black/90 p-3 opacity-0 backdrop-blur-sm transition-opacity duration-150 group-hover:opacity-100">
-          <div className="mb-1.5 flex items-center gap-1.5 text-caption text-mono-ink-faint">
-            <Eye size={12} className="[stroke-width:1.25]" />
-            Preview
-          </div>
+      <div className="flex-1 pr-7">
+        {isEditing ? (
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            rows={5}
+            aria-label="Draft content"
+            className={`${fieldClass} resize-none`}
+            autoFocus
+          />
+        ) : (
+          <p className="whitespace-pre-wrap text-body-sm text-mono-ink-soft">{draft.content}</p>
+        )}
+      </div>
+
+      {/* Preview lives in normal document flow — grows the card's real
+          height instead of floating over it. */}
+      <div
+        className={`grid transition-all duration-200 ease-out ${
+          showPreview && !isEditing ? "mt-3 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
           <TweetPreview displayName={displayName} handle={handle} content={draft.content} />
         </div>
-      )}
-
-      {isEditing ? (
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          rows={5}
-          aria-label="Draft content"
-          className={`${fieldClass} resize-none`}
-          autoFocus
-        />
-      ) : (
-        <p className="whitespace-pre-wrap text-body-sm text-mono-ink-soft">{draft.content}</p>
-      )}
+      </div>
 
       <div className="mt-3 flex items-center justify-between text-caption text-mono-ink-faint">
         <span>
@@ -134,7 +141,7 @@ export default function DraftCard({
 
       {isSchedulingOpen && (
         <div className="mt-3 flex items-center gap-2 border-t border-mono-hairline pt-3">
-          <CalendarClock size={14} className="[stroke-width:1.25] text-mono-ink-subtle" />
+          <CalendarClock size={14} className="[stroke-width:1.25] text-primary" />
           <input
             type="datetime-local"
             aria-label="Schedule date and time"
@@ -154,7 +161,7 @@ export default function DraftCard({
         </div>
       )}
 
-      <div className="mt-3 flex items-center gap-1 border-t border-mono-hairline pt-3">
+      <div className="mt-auto flex items-center gap-1 border-t border-mono-hairline pt-3">
         {isEditing ? (
           <>
             <Button
@@ -182,6 +189,21 @@ export default function DraftCard({
           </>
         ) : (
           <>
+            <button
+              onClick={() => setShowPreview((v) => !v)}
+              className={`flex items-center gap-1 rounded-full px-2 py-1 text-caption transition-colors duration-150 ${
+                showPreview
+                  ? "font-medium text-primary"
+                  : "text-mono-ink-subtle hover:bg-white/[0.06] hover:text-mono-ink"
+              }`}
+            >
+              {showPreview ? (
+                <EyeOff size={12} className="[stroke-width:1.25]" />
+              ) : (
+                <Eye size={12} className="[stroke-width:1.25]" />
+              )}
+              Preview
+            </button>
             <button
               onClick={() => setIsEditing(true)}
               className="flex items-center gap-1 rounded-full px-2 py-1 text-caption text-mono-ink-subtle transition-colors duration-150 hover:bg-white/[0.06] hover:text-mono-ink"
